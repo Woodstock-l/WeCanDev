@@ -11,13 +11,6 @@ class RegistrationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('type', Type\ChoiceType::class, array(
-                'choices' => array(
-                    'user.type.fournisseur' => 'fournisseur',
-                    'user.type.client' => 'client',
-                )
-            ))
-
             ->add('policy', Type\CheckboxType::class, array(
                 'label' => 'registration.policy',
                 'required' => true,
