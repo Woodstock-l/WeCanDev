@@ -1,0 +1,14 @@
+menu:
+  admin:
+    users: .icon-users Utilisateurs
+
+
+date:
+  create: Date d'ajout
+
+user:
+  type:
+    client: Client
+    fournisseur: Fournisseur
+
+logout: .icon-door-open Se déconnecter
