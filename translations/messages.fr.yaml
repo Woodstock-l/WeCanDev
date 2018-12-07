@@ -26,6 +26,12 @@ logout: .icon-door-open Se déconnecter
 registration:
   policy: Accepter les conditions générales.
 
+register:
+  name: Nom de l'utilisateur
+  firstname: Prénom
+
+form:
+  username: Pseudo
 
 tutorial:
   index:
@@ -34,4 +40,3 @@ tutorial:
   titre: Titre du tutorial
   author: Auteur
   category: Catégories
-
