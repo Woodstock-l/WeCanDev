@@ -7,8 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller {
-    public function index() { // Sf < 4 => indexAction
-        // return new Response("Peace and Love");
+    public function index() {
         return $this->render('index.html.twig', array(
             'name' => 'Brigitte',
         ));

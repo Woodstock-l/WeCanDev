@@ -12,3 +12,6 @@ user:
     fournisseur: Fournisseur
 
 logout: .icon-door-open Se déconnecter
+
+registration:
+  policy: Accepter les conditions générales.

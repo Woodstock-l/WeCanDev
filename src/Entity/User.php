@@ -20,38 +20,9 @@ class User extends BaseUser
      */
     protected $id;
 
-    /**
-     * @var null|string
-     * @ORM\Column(type="string", nullable=true)
-     */
-    private $type;
 
     public function __construct()
     {
         parent::__construct();
-    }
-
-    /**
-     * Get the value of type
-     *
-     * @return  null|string
-     */ 
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * Set the value of type
-     *
-     * @param  null|string  $type
-     *
-     * @return  self
-     */ 
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
     }
 }
