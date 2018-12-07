@@ -17,7 +17,7 @@ registration:
   policy: Accepter les conditions générales.
 
 register:
-  name: Nom
+  name: Nom de l'utilisateur
   firstname: Prénom
 
 form:
