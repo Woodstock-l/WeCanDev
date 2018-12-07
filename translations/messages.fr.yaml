@@ -2,6 +2,14 @@ menu:
   admin:
     users: .icon-users Utilisateurs
 
+category:
+  index:
+    title: Liste des catégories
+    count: "{0} Aucune catégorie|{1} 1 catégorie au total|]1,Inf[ %count% catégories au total"
+  new:
+    title: Ajouter une catégorie
+  tutorial_count: Nombre de tutoriel
+
 
 date:
   create: Date d'ajout
@@ -15,3 +23,4 @@ logout: .icon-door-open Se déconnecter
 
 registration:
   policy: Accepter les conditions générales.
+
