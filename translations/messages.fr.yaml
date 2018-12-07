@@ -15,3 +15,10 @@ logout: .icon-door-open Se déconnecter
 
 registration:
   policy: Accepter les conditions générales.
+
+register:
+  name: Nom
+  firstname: Prénom
+
+form:
+  username: Pseudo
