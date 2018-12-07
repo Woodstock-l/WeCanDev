@@ -1,0 +1,38 @@
+<div class="form-error">
+    {{ form_errors(form) }}
+</div>
+
+<div class="row">
+    <div class="col">
+        {{ form_row(form.title) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        {{ form_row(form.categories) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 col-lg-10">
+        {{ form_row(form.image) }}
+    </div>
+    <div class="col-md-4 col-lg-2">
+        {% if entity is defined and entity.image is not empty %}
+            <img class="w-100" src="{{ asset('/uploads/' ~ entity.image.path) }}" alt="{{ entity.image.name }}">
+        {% endif %}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        {{ form_row(form.content) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        {{ form_row(form.published) }}
+    </div>
+</div>
