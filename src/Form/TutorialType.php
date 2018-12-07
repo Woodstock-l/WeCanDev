@@ -16,14 +16,14 @@ class TutorialType extends AbstractType {
             ->add('title', null, array(
                 'label' => 'tutorial.title',
             ))
-            // ->add('categories', null, array(
-            //     'label' => 'tutorial.categories',
-            //     'expanded' => true,
-            //     'query_builder' => function(EntityRepository $er) {
-            //         return $er->createQueryBuilder('c')
-            //             ->orderBy('c.name', 'ASC');
-            //     }
-            // ))
+            ->add('categories', null, array(
+                'label' => 'tutorial.categories',
+                'expanded' => true,
+                'query_builder' => function(EntityRepository $er) {
+                   return $er->createQueryBuilder('c')
+                        ->orderBy('c.name', 'ASC');
+                }
+            ))
             ->add('image', ImageType::class, array(
                 'label' => 'tutorial.image',
             )) 
