@@ -2,6 +2,7 @@ menu:
   admin:
     users: .icon-users Utilisateurs
 
+
 category:
   index:
     title: Liste des catégories
@@ -13,6 +14,7 @@ category:
 
 date:
   create: Date d'ajout
+  update: Date de modification
 
 user:
   type:
@@ -23,4 +25,13 @@ logout: .icon-door-open Se déconnecter
 
 registration:
   policy: Accepter les conditions générales.
+
+
+tutorial:
+  index:
+    title: Liste des tutoriels
+    count: "{0} Aucun tutoriel|{1} Il y a 1 tutoriel|]1,Inf[ Il y a %count% tutoriels"
+  titre: Titre du tutorial
+  author: Auteur
+  category: Catégories
 
