@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 
@@ -25,8 +27,6 @@ class Tutorial
     {
         return $this->id;
     }
-
-
 
     /**
      * @ORM\Column(type="string", length=200)
@@ -52,8 +52,6 @@ class Tutorial
 
         return $this;
     }
-
-
 
     /**
      * @ORM\Column(type="text")
@@ -274,6 +272,36 @@ class Tutorial
     public function setDateUpdate(?\DateTime $dateUpdate)
     {
         $this->dateUpdate = $dateUpdate;
+
+        return $this;
+    }
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="tutorials")
+     * @var ?\Doctrine\Common\Collections\ArrayCollection
+     */
+    private $categories;
+
+    /**
+     * Get the value of categories
+     *
+     * @return  ?\Doctrine\Common\Collections\ArrayCollection
+     */ 
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * Set the value of categories
+     *
+     * @param  ?\Doctrine\Common\Collections\ArrayCollection  $categories
+     *
+     * @return  self
+     */ 
+    public function setCategories(?\Doctrine\Common\Collections\ArrayCollection $categories)
+    {
+        $this->categories = $categories;
 
         return $this;
     }
