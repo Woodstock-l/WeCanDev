@@ -23,7 +23,7 @@ class CategoryRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('c')
             ->select('c, a')
-            ->leftJoin('c.tutorial', 'a')
+            ->leftJoin('c.tutorials', 'a')
             ->getQuery()
             ->getResult()
         ;
