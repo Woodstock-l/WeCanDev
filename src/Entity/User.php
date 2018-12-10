@@ -32,7 +32,7 @@ class User extends BaseUser
 
     /**
      * @var ?\Doctrine\Common\Collections\ArrayCollection
-     * @ORM\OneToMany(targetEntity="App\Entity\Sheet", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Tutorial", mappedBy="user")
      * @ORM\OrderBy({"id" = "DESC"})
      */
     private $tutorials;
