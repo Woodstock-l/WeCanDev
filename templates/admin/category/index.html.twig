@@ -27,7 +27,7 @@
         {% for entity in entities %}
             <tr>
                 <td>{{ entity.name }}</td>
-                <td>{{ entity.articles|length }}</td>
+                <td>{{ entity.tutorials|length }}</td>
                 <td>
                     <div class="btn-group btn-group-sm">
                         <a class="btn btn-secondary" href="{{ path('admin_category_edit', {'id': entity.id }) }}"><i class="fa fa-pencil-alt"></i></a>

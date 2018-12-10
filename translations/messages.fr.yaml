@@ -31,3 +31,19 @@ tutorial:
   titre: Titre du tutorial
   author: Auteur
   category: Catégories
+
+  new:
+    title: Ajouter un nouveau tutoriel
+    success: Le tutoriel a bien été ajouté !
+  title: Titre
+  categories: Catégorie(s)
+  image: Ajouter une image
+  content: Contenu
+  published: Publier le tutoriel
+  edit:
+    success: Le tutoriel a bien été modifié !
+  delete:
+    title: Supprimer un tutoriel
+    message: Êtes-vous sûr de vouloir supprimer ce tutoriel ?
+    success: Le tutoriel a bien été supprimé !
+
