@@ -3,8 +3,18 @@ menu:
     users: .icon-users Utilisateurs
 
 
+category:
+  index:
+    title: Liste des catégories
+    count: "{0} Aucune catégorie|{1} 1 catégorie au total|]1,Inf[ %count% catégories au total"
+  new:
+    title: Ajouter une catégorie
+  tutorial_count: Nombre de tutoriel
+
+
 date:
   create: Date d'ajout
+  update: Date de modification
 
 user:
   type:
@@ -17,7 +27,7 @@ registration:
   policy: Accepter les conditions générales.
 
 register:
-  name: Nom de l'utilisateur
+  name: Nom
   firstname: Prénom
 
 form:
