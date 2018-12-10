@@ -4,16 +4,11 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-
-
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TutorialRepository")
  */
 class Tutorial
 {
-
-
-
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -25,8 +20,6 @@ class Tutorial
     {
         return $this->id;
     }
-
-
 
     /**
      * @ORM\Column(type="string", length=200)
@@ -52,8 +45,6 @@ class Tutorial
 
         return $this;
     }
-
-
 
     /**
      * @ORM\Column(type="text")
@@ -85,8 +76,6 @@ class Tutorial
         return $this;
     }
 
-
-    
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Image", cascade={"all"}, orphanRemoval=true)
      * @var ?\App\Entity\Image
@@ -116,8 +105,6 @@ class Tutorial
 
         return $this;
     }
-
-
 
     /**
      * @var ?\App\Entity\User
@@ -150,18 +137,46 @@ class Tutorial
         return $this;
     }
 
-
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="tutorials")
+     * @var ?\Doctrine\Common\Collections\ArrayCollection
+     */
+    private $categories;
 
     /**
-     * @ORM\Column(type="boolean")
-     * @var ?bool
+     * Get the value of categories
+     *
+     * @return  ?\Doctrine\Common\Collections\ArrayCollection
+     */ 
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * Set the value of categories
+     *
+     * @param  ?\Doctrine\Common\Collections\ArrayCollection  $categories
+     *
+     * @return  self
+     */ 
+    public function setCategories(?\Doctrine\Common\Collections\ArrayCollection $categories)
+    {
+        $this->categories = $categories;
+
+        return $this;
+    }
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     * @var bool
      */
     private $published;
 
-        /**
+    /**
      * Get the value of published
      *
-     * @return  ?bool
+     * @return  bool
      */ 
     public function getPublished()
     {
@@ -171,29 +186,27 @@ class Tutorial
     /**
      * Set the value of published
      *
-     * @param  ?bool  $published
+     * @param  bool  $published
      *
      * @return  self
      */ 
-    public function setPublished(?bool $published)
+    public function setPublished(bool $published)
     {
         $this->published = $published;
 
         return $this;
     }
 
-
-
     /**
-     * @ORM\Column(type="boolean")
-     * @var ?bool
+     * @ORM\Column(type="integer", nullable=true)
+     * @var int
      */
     private $rating;
 
-        /**
+    /**
      * Get the value of rating
      *
-     * @return  ?bool
+     * @return  int
      */ 
     public function getRating()
     {
@@ -203,26 +216,24 @@ class Tutorial
     /**
      * Set the value of rating
      *
-     * @param  ?bool  $rating
+     * @param  int  $rating
      *
      * @return  self
      */ 
-    public function setRating(?bool $rating)
+    public function setRating(int $rating)
     {
         $this->rating = $rating;
 
         return $this;
     }
 
-
-
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      * @var ?\DateTime
      */
     private $dateCreate;
 
-    /**
+        /**
      * Get the value of dateCreate
      *
      * @return  ?\DateTime
@@ -246,15 +257,13 @@ class Tutorial
         return $this;
     }
 
-
-
     /**
      * @ORM\Column(type="datetime", nullable=true)
      * @var ?\DateTime
      */
     private $dateUpdate;
 
-    /**
+       /**
      * Get the value of dateUpdate
      *
      * @return  ?\DateTime
@@ -276,5 +285,11 @@ class Tutorial
         $this->dateUpdate = $dateUpdate;
 
         return $this;
+    }
+
+    public function __construct()
+    {
+        $this->dateCreate = new \DateTime;
+        $this->dateUpdate = null;
     }
 }
