@@ -16,6 +16,14 @@ logout: .icon-door-open Se déconnecter
 registration:
   policy: Accepter les conditions générales.
 
+
+register:
+  name: Nom de l'utilisateur
+  firstname: Prénom
+
+form:
+  username: Pseudo
+
 tutorial:
   index:
     title: Liste des tutoriels
@@ -23,6 +31,7 @@ tutorial:
   titre: Titre du tutorial
   author: Auteur
   category: Catégories
+
   new:
     title: Ajouter un nouveau tutoriel
     success: Le tutoriel a bien été ajouté !
@@ -37,3 +46,4 @@ tutorial:
     title: Supprimer un tutoriel
     message: Êtes-vous sûr de vouloir supprimer ce tutoriel ?
     success: Le tutoriel a bien été supprimé !
+
