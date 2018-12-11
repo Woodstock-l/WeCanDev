@@ -99,7 +99,7 @@ class TutorialController extends Controller
     public function recentTutorials($count = 5)
     {
         $em = $this->getDoctrine()->getManager();
-        $entities = $em->getRepository(Tutorial::class)->findBy(['publication' => true], ['id' => 'DESC'], $count);
+        $entities = $em->getRepository(Tutorial::class)->findBy(['published' => true], ['id' => 'DESC'], $count);
 
         return $this->render('tutorial/_recent_tutorials.html.twig', array(
             'entities' => $entities,

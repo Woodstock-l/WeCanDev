@@ -1,6 +1,10 @@
 {% extends 'layout.html.twig' %}
 
 {% block page_content %}
+<h2>Derniers tutoriels</h2>
+{# {{ render(controller('App\\Controller\\TutorialController::recentTutorials')) }} #}
+
+<button type="button" class="btn btn-light"><a href="{{ path('tutorial_index') }}">{{ 'tutorial.show_all'|trans }}</a></button>
 {% endblock page_content %}
 
 {% block javascripts %}

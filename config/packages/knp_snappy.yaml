@@ -1,0 +1,7 @@
+knp_snappy:
+    pdf:
+        enabled:     true 
+        binary:      "C:/Programmes/wkhtmltopdf/bin/wkhtmltopdf.exe"
+        options:     [] 
+    temporary_folder: "% kernel.cache_dir % / Snappy"
+    process_timeout: 10
