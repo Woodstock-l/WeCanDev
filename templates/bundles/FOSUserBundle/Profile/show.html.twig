@@ -1,0 +1,20 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_content %}
+<br>
+
+<h2>Mes informations personnelles</h2>
+
+<ul class="list-group">
+    <li class="list-group-item">Nom : {{ user.name }}</li>
+    <li class="list-group-item">Prénom : {{ user.firstname }}</li>
+    <li class="list-group-item">Pseudo : {{ user.username }}</li>
+    <li class="list-group-item">E-mail : {{ user.email }}</li>
+</ul>
+
+<br>
+
+<h2>Mes favoris</h2>
+
+<a class="btn btn-dark" href="{{ path('admin_tutorial_new') }}"></a>
+{% endblock %}
