@@ -42,4 +42,26 @@ form:
   username: Pseudo
 
 tutorial:
-  show_all: Voir tous les tutos
+  index:
+    title: Liste des tutoriels
+    count: "{0} Aucun tutoriel|{1} Il y a 1 tutoriel|]1,Inf[ Il y a %count% tutoriels"
+  new:
+    title: Ajouter un nouveau tutoriel
+    success: Le tutoriel a bien été ajouté !
+  edit:
+    success: Le tutoriel a bien été modifié !
+  delete:
+    title: Supprimer un tutoriel
+    message: Êtes-vous sûr de vouloir supprimer ce tutoriel ?
+    success: Le tutoriel a bien été supprimé !
+    
+  titre: Titre du tutorial
+  author: Auteur
+  category: Catégories
+  show_all: Voir tous les tutoriels  
+  title: Titre
+  categories: Catégorie(s)
+  image: Ajouter une image
+  content: Contenu
+  published: Publier le tutoriel  
+  pdf: Télécharger le tutoriel en PDF

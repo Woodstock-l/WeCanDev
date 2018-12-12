@@ -30,9 +30,17 @@ class User extends BaseUser
      */
     private $firstname;
 
+    /**
+     * @var ?\Doctrine\Common\Collections\ArrayCollection
+     * @ORM\OneToMany(targetEntity="App\Entity\Tutorial", mappedBy="user")
+     * @ORM\OrderBy({"id" = "DESC"})
+     */
+    private $tutorials;
+
     public function __construct()
     {
         parent::__construct();
+        
     }
 
     /**
@@ -71,6 +79,30 @@ class User extends BaseUser
     public function setFirstname($firstname)
     {
         $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of tutorials
+     *
+     * @return  ?\Doctrine\Common\Collections\ArrayCollection
+     */ 
+    public function getTutorials()
+    {
+        return $this->tutorials;
+    }
+
+    /**
+     * Set the value of tutorials
+     *
+     * @param  ?\Doctrine\Common\Collections\ArrayCollection  $tutorials
+     *
+     * @return  self
+     */ 
+    public function setTutorials(?\Doctrine\Common\Collections\ArrayCollection $tutorials)
+    {
+        $this->tutorials = $tutorials;
 
         return $this;
     }
