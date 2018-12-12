@@ -20,6 +20,7 @@ class TutorialType extends AbstractType {
                 'label' => 'tutorial.categories',
                 'expanded' => true,
                 'query_builder' => function(EntityRepository $er) {
+
                    return $er->createQueryBuilder('c')
                         ->orderBy('c.name', 'ASC');
                 }
@@ -29,6 +30,9 @@ class TutorialType extends AbstractType {
             )) 
             ->add('content', null, array(
                 'label' => 'tutorial.content',
+                'attr' => [
+                    'class' => 'summernote',
+                ]
             ))
             ->add('published', null, array(
                 'label' => 'tutorial.published'

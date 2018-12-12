@@ -1,3 +1,14 @@
 
 @import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~summernote/dist/summernote-bs4.css";
+@import '~codemirror/lib/codemirror.css';
+@import '~codemirror/theme/monokai.css';
+
+pre.code {
+    background-color: rgb(206, 206, 206);
+    border-radius: 3px;
+    font-family: courier, monospace;
+    padding: 0 3px;
+
+}

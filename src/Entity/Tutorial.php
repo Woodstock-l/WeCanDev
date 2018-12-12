@@ -6,16 +6,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-
-
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TutorialRepository")
  */
 class Tutorial
 {
-
-
-
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -83,8 +78,6 @@ class Tutorial
         return $this;
     }
 
-
-    
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Image", cascade={"all"}, orphanRemoval=true)
      * @var ?\App\Entity\Image
@@ -114,8 +107,6 @@ class Tutorial
 
         return $this;
     }
-
-
 
     /**
      * @var ?\App\Entity\User
@@ -148,134 +139,6 @@ class Tutorial
         return $this;
     }
 
-
-
-    /**
-     * @ORM\Column(type="boolean")
-     * @var ?bool
-     */
-    private $published;
-
-        /**
-     * Get the value of published
-     *
-     * @return  ?bool
-     */ 
-    public function getPublished()
-    {
-        return $this->published;
-    }
-
-    /**
-     * Set the value of published
-     *
-     * @param  ?bool  $published
-     *
-     * @return  self
-     */ 
-    public function setPublished(?bool $published)
-    {
-        $this->published = $published;
-
-        return $this;
-    }
-
-
-
-    /**
-     * @ORM\Column(type="boolean")
-     * @var ?bool
-     */
-    private $rating;
-
-        /**
-     * Get the value of rating
-     *
-     * @return  ?bool
-     */ 
-    public function getRating()
-    {
-        return $this->rating;
-    }
-
-    /**
-     * Set the value of rating
-     *
-     * @param  ?bool  $rating
-     *
-     * @return  self
-     */ 
-    public function setRating(?bool $rating)
-    {
-        $this->rating = $rating;
-
-        return $this;
-    }
-
-
-
-    /**
-     * @ORM\Column(type="datetime")
-     * @var ?\DateTime
-     */
-    private $dateCreate;
-
-    /**
-     * Get the value of dateCreate
-     *
-     * @return  ?\DateTime
-     */ 
-    public function getDateCreate()
-    {
-        return $this->dateCreate;
-    }
-
-    /**
-     * Set the value of dateCreate
-     *
-     * @param  ?\DateTime  $dateCreate
-     *
-     * @return  self
-     */ 
-    public function setDateCreate(?\DateTime $dateCreate)
-    {
-        $this->dateCreate = $dateCreate;
-
-        return $this;
-    }
-
-
-
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     * @var ?\DateTime
-     */
-    private $dateUpdate;
-
-    /**
-     * Get the value of dateUpdate
-     *
-     * @return  ?\DateTime
-     */ 
-    public function getDateUpdate()
-    {
-        return $this->dateUpdate;
-    }
-
-    /**
-     * Set the value of dateUpdate
-     *
-     * @param  ?\DateTime  $dateUpdate
-     *
-     * @return  self
-     */ 
-    public function setDateUpdate(?\DateTime $dateUpdate)
-    {
-        $this->dateUpdate = $dateUpdate;
-
-        return $this;
-    }
-
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="tutorials")
      * @var ?\Doctrine\Common\Collections\ArrayCollection
@@ -304,5 +167,132 @@ class Tutorial
         $this->categories = $categories;
 
         return $this;
+    }
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     * @var bool
+     */
+    private $published;
+
+    /**
+     * Get the value of published
+     *
+     * @return  bool
+     */ 
+    public function getPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+     * Set the value of published
+     *
+     * @param  bool  $published
+     *
+     * @return  self
+     */ 
+    public function setPublished(bool $published)
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     * @var int
+     */
+    private $rating;
+
+    /**
+     * Get the value of rating
+     *
+     * @return  int
+     */ 
+    public function getRating()
+    {
+        return $this->rating;
+    }
+
+    /**
+     * Set the value of rating
+     *
+     * @param  int  $rating
+     *
+     * @return  self
+     */ 
+    public function setRating(int $rating)
+    {
+        $this->rating = $rating;
+
+        return $this;
+    }
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var ?\DateTime
+     */
+    private $dateCreate;
+
+        /**
+     * Get the value of dateCreate
+     *
+     * @return  ?\DateTime
+     */ 
+    public function getDateCreate()
+    {
+        return $this->dateCreate;
+    }
+
+    /**
+     * Set the value of dateCreate
+     *
+     * @param  ?\DateTime  $dateCreate
+     *
+     * @return  self
+     */ 
+    public function setDateCreate(?\DateTime $dateCreate)
+    {
+        $this->dateCreate = $dateCreate;
+
+        return $this;
+    }
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var ?\DateTime
+     */
+    private $dateUpdate;
+
+       /**
+     * Get the value of dateUpdate
+     *
+     * @return  ?\DateTime
+     */ 
+    public function getDateUpdate()
+    {
+        return $this->dateUpdate;
+    }
+
+    /**
+     * Set the value of dateUpdate
+     *
+     * @param  ?\DateTime  $dateUpdate
+     *
+     * @return  self
+     */ 
+    public function setDateUpdate(?\DateTime $dateUpdate)
+    {
+        $this->dateUpdate = $dateUpdate;
+
+        return $this;
+    }
+
+
+    public function __construct()
+    {
+        $this->dateCreate = new \DateTime;
+        $this->dateUpdate = null;
     }
 }

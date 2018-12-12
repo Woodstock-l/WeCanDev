@@ -21,7 +21,7 @@ class Image
 
     
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $path;
 
@@ -33,7 +33,7 @@ class Image
     /**
      * @var UploadedFile
      * @Assert\Image(
-     *  maxSize = "2M"
+     *  maxSize = "1M"
      * )
      */
     private $file;
@@ -74,7 +74,7 @@ class Image
     }
 
     /**
-     * Get maxSize = "2M"
+     * Get maxSize = "1M"
      *
      * @return  UploadedFile
      */ 
@@ -84,9 +84,9 @@ class Image
     }
 
     /**
-     * Set maxSize = "2M"
+     * Set maxSize = "1M"
      *
-     * @param  UploadedFile  $file  maxSize = "2M"
+     * @param  UploadedFile  $file  maxSize = "1M"
      *
      * @return  self
      */ 

@@ -57,6 +57,11 @@ class Category
 
         return $this;
     }
+    
+    public function __toString()
+    {
+        return $this->name;
+    }
 
     /**
      * Get the value of tutorials

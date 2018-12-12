@@ -1,0 +1,19 @@
+<html>
+<body>
+<article>
+        <h2>{{ entity.title }}</h2>
+        {% if entity.image is not empty %}
+            <img src="{{ path ~ asset('/uploads/' ~ entity.image.path) }}" class="img-responsive">
+        {% endif %}
+        <br/>
+        <small>{{ entity.dateUpdate|date('d/m/Y H:i') }} - 
+            {% if entity.user is not empty %}
+                {{ entity.user }}
+            {% endif %}
+        </small>
+        <div class="article-content">
+            {{ entity.content|raw }}
+        </div>
+    </article>
+</body>
+</html>
