@@ -20,5 +20,7 @@
         <div class="article-content">
             {{ entity.content|raw }}
         </div>
+
+        <button type="button" class="btn btn-light"><a href="{{ path('tutorial_pdf', {'id': entity.id }) }}">{{ 'tutorial.pdf'|trans }}</a></button>
     </article>
 {% endblock %}

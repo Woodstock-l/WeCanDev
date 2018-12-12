@@ -23,10 +23,10 @@ class TutorialRepository extends ServiceEntityRepository
             ->orderBy('a.id', 'DESC')
         ;
 
-        // if(!is_null($published)) {
-        //     $queryBuilder->where('a.published = :published')
-        //         ->setParameter(':published', $published);
-        // }
+        if(!is_null($published)) {
+            $queryBuilder->where('a.published = :published')
+                ->setParameter(':published', $published);
+        }
 
         return new Paginator($queryBuilder);
     }
