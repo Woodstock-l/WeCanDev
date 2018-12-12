@@ -1,6 +1,7 @@
 
 @import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
 @import "~summernote/dist/summernote-bs4.css";
 @import '~codemirror/lib/codemirror.css';
 @import '~codemirror/theme/monokai.css';
@@ -13,6 +14,7 @@ pre.code {
     color:rgb(233, 232, 232);
     padding: 10px;
 }
+
 
 div.note-toolbar button{
     background-color: rgb(240, 233, 233);
@@ -46,3 +48,4 @@ div.note-toolbar button:hover{
     color:rgb(245, 239, 239);
     padding: 10px;
 }
+

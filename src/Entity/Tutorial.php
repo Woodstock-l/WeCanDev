@@ -289,7 +289,6 @@ class Tutorial
         return $this;
     }
 
-
     public function __construct()
     {
         $this->dateCreate = new \DateTime;

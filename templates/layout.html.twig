@@ -5,13 +5,177 @@
 {% endblock %}
 
 {% block body %}
-{% embed 'decorator/_navbar.html.twig' with {'class' : 'fixed-top navbar-dark bg-dark', 'brandUrl' : path('index')} %}
-    {% block brand %}
-    WeCanDev
-    {% endblock %}
-{% endembed %}
-<div class="container">
+{# HEADER #}
+<header class="main-header">
+     {# Menu de navigation #}
+    {% embed 'decorator/_navbar.html.twig' with {'class': 'fixed-top navbar-dark bg-darkblue', 'brandUrl': path('index') } %}
+        {% block brand %}
+            WeCanDev
+        {% endblock %}
+
+        {# Sous-menu tutoriels avec catégories #}
+        {% block menu %}
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Tutoriels
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">HTML 5</a>
+                            <a class="dropdown-item" href="#">CSS 3</a>
+                            <a class="dropdown-item" href="#">Bootstrap</a>
+                            <a class="dropdown-item" href="#">Javascript</a>
+                            <a class="dropdown-item" href="#">jQuery</a>
+                            <a class="dropdown-item" href="#">PHP 7</a>
+                            <a class="dropdown-item" href="#">Symfony 4</a>
+                            <a class="dropdown-item" href="#">WordPress</a>
+                        </div>
+                    </li>
+                </ul>
+
+                {# Barre de recherche #}
+                <form class="form-inline" id="recherche" method="post">
+                    <input name="saisie" type="text" placeholder="Recherche..." required />
+                    <input class="loupe" type="submit" value="" />
+                </form>
+                
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %} 
+                {# pour condition avec un rôle spécifique {% if is_granted('ROLE_NOMDUROLE') %} #}
+
+                {% else %}
+                {# Boutons inscription/connexion #}
+                <form class="form-inline ml-2">
+                    <a href="{{ path("fos_user_registration_register") }}"><button class="btn btn-sm btn-outline-secondary register" type="button">S'inscrire</button></a>
+                    <a href="{{ path("fos_user_security_login") }}"><button class="btn btn-sm btn-outline-secondary ml-2 login" type="button">Se connecter</button></a>
+                </form>
+                {% endif %}
+
+            </div>
+        {% endblock %}
+    {% endembed %}
+</header>
+<div class="{% block page_class %}container{% endblock %}">
     {% block page_content %}
     {% endblock %}
 </div>
-{% endblock %}
+
+{# FOOTER #}
+<!--contact start -->
+<section id="contact" class="contact">
+	<div class="section-heading text-center">
+		<h2>Nous contacter</h2>
+	</div>
+
+	<div class="container">
+		<div class="contact-content">
+		    <div class="row d-flex justify-content-between">
+				<div class="col-md-offset-1 col-md-5 col-sm-6">
+					<div class="single-contact-box">
+						<div class="contact-form">
+							<form>
+								<div class="row">
+									<div class="col-sm-6 col-xs-12">
+										<div class="form-group">
+											<input type="text" class="form-control" id="name" placeholder="Nom*" name="name">
+										</div><!--/.form-group-->
+									</div><!--/.col-->
+
+									<div class="col-sm-6 col-xs-12">
+										<div class="form-group">
+											<input type="email" class="form-control" id="email" placeholder="Email*" name="email">
+										</div><!--/.form-group-->
+									</div><!--/.col-->
+
+								</div><!--/.row-->
+
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="form-group">
+											<input type="text" class="form-control" id="subject" placeholder="Sujet" name="subject">
+										</div><!--/.form-group-->
+									</div><!--/.col-->
+
+								</div><!--/.row-->
+
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="form-group">
+											<textarea class="form-control" rows="8" id="comment" placeholder="Message" ></textarea>
+										</div><!--/.form-group-->
+									</div><!--/.col-->
+								</div><!--/.row-->
+
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="single-contact-btn">
+                                            <button class="btn btn-secondary btn-lg btn-block contact-btn" type="button">Envoyer</button>
+										</div><!--/.single-single-contact-btn-->
+									</div><!--/.col-->
+								</div><!--/.row-->
+							</form><!--/form-->
+						</div><!--/.contact-form-->
+					</div><!--/.single-contact-box-->
+				</div><!--/.col-->
+
+				<div class="col-md-offset-1 col-md-5 col-sm-6 mt-3">
+					<div class="single-contact-box">
+						<div class="contact-adress">
+							<div class="contact-add-head">
+								<h3>WeCanDev</h3>
+								<p>Le site où on apprend le développement <br> en s'amusant. <br> - Projet de fin de formation- </p>
+							</div>
+							<div class="contact-add-info">
+								<div class="single-contact-add-info">
+									<h3>Téléphone</h3>
+									<p>0624576454</p>
+								</div>
+								<div class="single-contact-add-info">
+									<h3>email</h3>
+									<p>wecandev@gmail.com</p>
+								</div>
+							</div>
+						</div><!--/.contact-adress-->
+						<div class="hm-foot-icon">
+							<ul class="list-unstyled">
+								<li><a href="#"><i class="fab fa-facebook"></i></a></li><!--/li-->
+								<li><a href="#"><i class="fab fa-twitter"></i></a></li><!--/li-->
+								<li><a href="#"><i class="fab fa-linkedin"></i></a></li><!--/li-->
+								<li><a href="#"><i class="fab fa-instagram"></i></a></li><!--/li-->
+							</ul><!--/ul-->
+						</div><!--/.hm-foot-icon-->
+					</div><!--/.single-contact-box-->
+				</div><!--/.col-->
+			</div><!--/.row-->
+		</div><!--/.contact-content-->
+	</div><!--/.container-->
+
+</section><!--/.contact-->
+<!--contact end -->
+
+<!--footer-copyright start-->
+<footer id="footer-copyright" class="footer-copyright">
+	<div class="container">
+		<div class="hm-footer-copyright text-center">
+			<p>
+				&copy; copyright WeCanDev. designed and developped by Lucie, Cécile, Thibault et Julien
+			</p><!--/p-->
+		</div><!--/.text-center-->
+	</div><!--/.container-->
+
+    {# SCROLL-TOP #}
+	{# <div id="scroll-Top">
+		<div class="return-to-top">
+			{# <i class="fa fa-angle-up" id="scroll-top" ></i> #}
+		{# </div> #}
+				
+	{# </div><!--/.scroll-Top--> #} #}
+			
+</footer><!--/.footer-copyright-->
+<!--footer-copyright end-->
+
+{% endblock %} {# endblock body #}

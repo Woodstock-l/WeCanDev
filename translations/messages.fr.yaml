@@ -1,7 +1,15 @@
 menu:
   admin:
     users: .icon-users Utilisateurs
-
+    users_list: Liste des utilisateurs
+    users_new: Ajouter un nouvel utilisateur
+    tutorial: .icon-desktop Tutoriels
+    tutorial_list: Liste des tutoriels
+    tutorial_new: Ajouter un tutoriel
+    category: .icon-bookmark Catégories
+    category_list: Liste des catégories
+    category_new: Ajouter une catégorie
+    
 
 category:
   index:
@@ -57,6 +65,4 @@ tutorial:
   content: Contenu
   published: Publier le tutoriel  
   pdf: Télécharger le tutoriel en PDF
-
-  
 
