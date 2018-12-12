@@ -11,7 +11,12 @@ import 'bootstrap';
 import 'summernote/dist/summernote-bs4.js';
 import 'codemirror';
 import 'codemirror/mode/xml/xml.js';
-
+import hljs from 'highlight.js/lib/highlight';
+import javascript from 'highlight.js/lib/languages/javascript';
+import xml from 'highlight.js/lib/languages/xml';
+import css from 'highlight.js/lib/languages/css';
+import php from 'highlight.js/lib/languages/php';
+import twig from 'highlight.js/lib/languages/twig';
 
 $(function() {
 
@@ -23,6 +28,8 @@ $(function() {
         styleTags: [
             'p',
             {title: 'Blockquote', tag: 'blockquote', className: 'blockquote', value: 'blockquote'},
+            {title: 'Bloc Erreur', tag: 'blockquote', className: 'blocErreur', value: 'blockquote'},
+            {title: 'Bloc Lien', tag: 'blockquote', className: 'blocLien', value: 'blockquote'},
             {title: 'Code', tag: 'pre', className: 'code', value: 'pre'},
             {title: 'Titre 1', tag: 'h1', className: 'titre1', value: 'h1'},
             {title: 'Titre 2', tag: 'h2', className: 'titre2', value: 'h2'},
@@ -31,6 +38,19 @@ $(function() {
             {title: 'Titre 5', tag: 'h5', className: 'titre5', value: 'h5'},
             {title: 'Titre 6', tag: 'h6', className: 'titre6', value: 'h6'},
           ]
+    });
+
+
+    hljs.registerLanguage('html', xml);
+    hljs.registerLanguage('js', javascript);
+    hljs.registerLanguage('css', css);
+    hljs.registerLanguage('php', php);
+    hljs.registerLanguage('twig', twig);
+    
+
+    $('.code').each(function(i, block) {
+        hljs.configure({useBR: true});
+        hljs.highlightBlock(block);
     });
 
     var $followLink = $('.follow-link');
