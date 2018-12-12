@@ -1,6 +1,22 @@
 {% extends 'layout.html.twig' %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('build/css/front.css') }}">
+{% endblock %}
+
 {% block page_content %}
+<header class="main-header">
+    {% embed 'decorator/_navbar.html.twig' with {'class': 'fixed-top navbar-dark bg-primary', 'brandUrl': path('index') } %}
+        {% block brand %}
+            WeCanDev
+        {% endblock %}
+
+        {% block menu %}
+            {{ knp_menu_render('user', {'style': 'horizontal-right'})}}
+        {% endblock %}
+    {% endembed %}
+</header>
+
 <br>
 
 <h2>Mes informations personnelles</h2>
@@ -15,6 +31,7 @@
 <br>
 
 <h2>Mes favoris</h2>
+{# {{ render(controller('App\\Controller\\TutorialController::recentTutorials')) }} #}
 
-<a class="btn btn-dark" href="{{ path('admin_tutorial_new') }}"></a>
+<a class="btn btn-dark" href="{{ path('admin_tutorial_new') }}">Créer un nouveau tutorial</a>
 {% endblock %}
