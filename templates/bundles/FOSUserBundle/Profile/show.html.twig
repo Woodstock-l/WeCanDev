@@ -21,17 +21,24 @@
 
 <h2>Mes informations personnelles</h2>
 
+{{ user.imageProfile }}
+
 <ul class="list-group">
-    <li class="list-group-item">Nom : {{ user.name }}</li>
-    <li class="list-group-item">Prénom : {{ user.firstname }}</li>
     <li class="list-group-item">Pseudo : {{ user.username }}</li>
     <li class="list-group-item">E-mail : {{ user.email }}</li>
 </ul>
 
 <br>
 
+<div class="btn-group">
+    <a class="btn btn-primary" href="{{ path('fos_user_profile_edit') }}">Modifier le profil</a>
+    <a class="btn btn-secondary" href="{{ path('fos_user_change_password') }}">Changer le mot de passe</a>
+</div>
+
+<hr>
+
 <h2>Mes favoris</h2>
 {# {{ render(controller('App\\Controller\\TutorialController::recentTutorials')) }} #}
 
-<a class="btn btn-dark" href="{{ path('admin_tutorial_new') }}">Créer un nouveau tutorial</a>
+<a class="btn btn-primary" href="{{ path('admin_tutorial_new') }}">Créer un nouveau tutorial</a>
 {% endblock %}
