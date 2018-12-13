@@ -47,13 +47,18 @@
                 
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %} 
                 {# pour condition avec un rôle spécifique {% if is_granted('ROLE_NOMDUROLE') %} #}
+                    
+                        {{ knp_menu_render('user', {'style': 'horizontal-right'})}}
+                    
+
+
 
                 {% else %}
                 {# Boutons inscription/connexion #}
-                <form class="form-inline ml-2">
-                    <a href="{{ path("fos_user_registration_register") }}"><button class="btn btn-sm btn-outline-secondary register" type="button">S'inscrire</button></a>
-                    <a href="{{ path("fos_user_security_login") }}"><button class="btn btn-sm btn-outline-secondary ml-2 login" type="button">Se connecter</button></a>
-                </form>
+                <div class="ml-2">
+                    <a href="{{ path("fos_user_registration_register") }}" class="btn btn-sm btn-outline-secondary register">S'inscrire</a>
+                    <a href="{{ path("fos_user_security_login") }}" class="btn btn-sm btn-outline-secondary ml-2 login">Se connecter</a>
+                </div>
                 {% endif %}
 
             </div>
@@ -187,7 +192,7 @@
 			{# <i class="fa fa-angle-up" id="scroll-top" ></i> #}
 		{# </div> #}
 				
-	{# </div><!--/.scroll-Top--> #} #}
+	{# </div><!--/.scroll-Top--> #} 
 			
 </footer><!--/.footer-copyright-->
 <!--footer-copyright end-->
