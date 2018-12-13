@@ -9,7 +9,6 @@ date:
 user:
   type:
     client: Client
-    fournisseur: Fournisseur
 
 logout: .icon-door-open Se déconnecter
 
@@ -18,11 +17,9 @@ registration:
 
 
 register:
-  name: Nom de l'utilisateur
+  name: Nom 
   firstname: Prénom
-
-form:
-  username: Pseudo
+  success: "Vous inscription est bien validée. Bienvenue sur WeCanDev !"
 
 tutorial:
   index:
@@ -31,7 +28,7 @@ tutorial:
   titre: Titre du tutorial
   author: Auteur
   category: Catégories
-
+  star: .icon-star
   new:
     title: Ajouter un nouveau tutoriel
     success: Le tutoriel a bien été ajouté !
@@ -47,3 +44,10 @@ tutorial:
     message: Êtes-vous sûr de vouloir supprimer ce tutoriel ?
     success: Le tutoriel a bien été supprimé !
 
+role:
+  user: Utilisateur
+  super_admin: Administrateur
+  contributor: Contributeur
+
+form:
+  username: Pseudo

@@ -34,8 +34,6 @@ class UserController extends AbstractController
             'entity' => $entity,
         ));
     }
-
-
     /**
      * @Route("/follow/{id}", requirements={"id" = "\d+"}, name="follow")
      */

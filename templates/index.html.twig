@@ -1,7 +1,15 @@
 {% extends 'layout.html.twig' %}
 
 {% block page_content %}
-{% endblock page_content %}
+{#<header class="main-header">
+    {% embed 'decorator/_navbar.html.twig' with {'class': 'fixed-top navbar-dark bg-dark', 'brandUrl': path('index') } %}
+        {% block brand %}
+            WeCanDev
+        {% endblock %}
+    {% endembed %}
+    
+</header>#}
+{% endblock %}
 
 {% block javascripts %}
 {% endblock %}

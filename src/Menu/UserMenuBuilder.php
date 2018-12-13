@@ -20,8 +20,9 @@ class UserMenuBuilder
     {
         $user = $this->tokenStorage->getToken()->getUser();
         $menu = $this->factory->createItem('root');
-
-        $parent = $menu->addChild($user->getUsername(), ['uri' => '#']);
+        if(isset($user)){
+            $parent = $menu->addChild($user->getUsername(), ['uri' => '#']);            
+        }
         $parent->setExtra('translation_domain', false); // Na pas traduire le pseudo
 
         $parent->addChild('logout', ['route' => 'fos_user_security_logout']);
