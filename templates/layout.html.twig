@@ -2,6 +2,7 @@
 
 {% block stylesheets %}
 <link rel="stylesheet" href="{{ asset('build/css/front.css') }}">
+
 {% endblock %}
 
 {% block body %}
@@ -33,6 +34,7 @@
                             <a class="dropdown-item" href="#">Javascript</a>
                             <a class="dropdown-item" href="#">jQuery</a>
                             <a class="dropdown-item" href="#">PHP 7</a>
+                            <a class="dropdown-item" href="#">Twig</a>
                             <a class="dropdown-item" href="#">Symfony 4</a>
                             <a class="dropdown-item" href="#">WordPress</a>
                         </div>
@@ -50,9 +52,6 @@
                     
                         {{ knp_menu_render('user', {'style': 'horizontal-right'})}}
                     
-
-
-
                 {% else %}
                 {# Boutons inscription/connexion #}
                 <div class="ml-2">
