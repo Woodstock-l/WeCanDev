@@ -31,6 +31,11 @@ class User extends BaseUser
     private $firstname;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imageProfile;
+
+    /**
      * @var ?\Doctrine\Common\Collections\ArrayCollection
      * @ORM\OneToMany(targetEntity="App\Entity\Tutorial", mappedBy="user")
      * @ORM\OrderBy({"id" = "DESC"})
@@ -103,6 +108,26 @@ class User extends BaseUser
     public function setTutorials(?\Doctrine\Common\Collections\ArrayCollection $tutorials)
     {
         $this->tutorials = $tutorials;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of imageProfile
+     */ 
+    public function getImageProfile()
+    {
+        return $this->imageProfile;
+    }
+
+    /**
+     * Set the value of imageProfile
+     *
+     * @return  self
+     */ 
+    public function setImageProfile($imageProfile)
+    {
+        $this->imageProfile = $imageProfile;
 
         return $this;
     }

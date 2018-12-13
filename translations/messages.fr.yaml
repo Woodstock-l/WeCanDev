@@ -42,10 +42,6 @@ tutorial:
   index:
     title: Liste des tutoriels
     count: "{0} Aucun tutoriel|{1} Il y a 1 tutoriel|]1,Inf[ Il y a %count% tutoriels"
-
-  titre: Titre du tutorial
-  author: Auteur
-  category: Catégories
   star: .icon-star
 
   new:

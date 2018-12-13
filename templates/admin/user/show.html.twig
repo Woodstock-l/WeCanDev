@@ -31,6 +31,14 @@
                 <th>Roles</th>
                 <td>{{ user.roles ? user.roles|join(', ') : '' }}</td>
             </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ user.imageProfile }}</td>
+            </tr>
         </tbody>
     </table>
 
