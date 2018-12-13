@@ -1,6 +1,24 @@
 menu:
   admin:
     users: .icon-users Utilisateurs
+    users_list: Liste des utilisateurs
+    users_new: Ajouter un nouvel utilisateur
+    tutorial: .icon-desktop Tutoriels
+    tutorial_list: Liste des tutoriels
+    tutorial_new: Ajouter un tutoriel
+    category: .icon-bookmark Catégories
+    category_list: Liste des catégories
+    category_new: Ajouter une catégorie
+    
+
+category:
+  index:
+    title: Liste des catégories
+    count: "{0} Aucune catégorie|{1} 1 catégorie au total|]1,Inf[ %count% catégories au total"
+  new:
+    title: Ajouter une catégorie
+  tutorial_count: Nombre de tutoriel
+
 
 date:
   create: Date d'ajout
@@ -9,25 +27,27 @@ date:
 user:
   type:
     client: Client
-    fournisseur: Fournisseur
 
 logout: .icon-door-open Se déconnecter
 
 registration:
   policy: Accepter les conditions générales.
 
-
 register:
-  name: Nom de l'utilisateur
+  name: Nom 
   firstname: Prénom
-
-form:
-  username: Pseudo
+  success: "Vous inscription est bien validée. Bienvenue sur WeCanDev !"
 
 tutorial:
   index:
     title: Liste des tutoriels
     count: "{0} Aucun tutoriel|{1} Il y a 1 tutoriel|]1,Inf[ Il y a %count% tutoriels"
+
+  titre: Titre du tutorial
+  author: Auteur
+  category: Catégories
+  star: .icon-star
+
   new:
     title: Ajouter un nouveau tutoriel
     success: Le tutoriel a bien été ajouté !
@@ -37,7 +57,7 @@ tutorial:
     title: Supprimer un tutoriel
     message: Êtes-vous sûr de vouloir supprimer ce tutoriel ?
     success: Le tutoriel a bien été supprimé !
-    
+  
   titre: Titre du tutorial
   author: Auteur
   category: Catégories
@@ -49,4 +69,10 @@ tutorial:
   published: Publier le tutoriel  
   pdf: Télécharger le tutoriel en PDF
 
-  
+role:
+  user: Utilisateur
+  super_admin: Administrateur
+  contributor: Contributeur
+
+form:
+  username: Pseudo

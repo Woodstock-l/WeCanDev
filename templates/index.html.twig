@@ -1,10 +1,41 @@
 {% extends 'layout.html.twig' %}
-
+{% block page_class %}{% endblock %}
 {% block page_content %}
-<h2>Derniers tutoriels</h2>
-{# {{ render(controller('App\\Controller\\TutorialController::recentTutorials')) }} #}
 
-<button type="button" class="btn btn-light"><a href="{{ path('tutorial_index') }}">{{ 'tutorial.show_all'|trans }}</a></button>
+{#<header class="main-header">
+    {% embed 'decorator/_navbar.html.twig' with {'class': 'fixed-top navbar-dark bg-dark', 'brandUrl': path('index') } %}
+        {% block brand %}
+            WeCanDev
+        {% endblock %}
+    {% endembed %}
+    
+</header>#}
+{% endblock %}
+
+<!--home-header start -->
+		<section class="home-header">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<div class="header-text">
+							<h1 class="animated animatedFadeInUp fadeInUp">WeCanDev <span>,</span><br></h1> 
+                            <h2 class="animated animatedFadeInDown fadeInDown">le site où on apprend le développement <br> en s'amusant<span>.</span></h2>
+							
+						</div><!--/.header-text-->
+					</div><!--/.col-->
+				</div><!-- /.row-->
+			</div><!-- /.container-->
+		</section><!--/.home-header-img-->
+<!--home-header end -->		
+
+
+        <div class="container">
+            <h2>Derniers tutoriels</h2>
+
+            {{ render(controller('App\\Controller\\TutorialController::recentTutorials')) }}
+
+            <a href="{{ path('tutorial_index') }}" class="btn btn-secondary">{{ 'tutorial.show_all'|trans }}</a>
+        </div>
 {% endblock page_content %}
 
 {% block javascripts %}
