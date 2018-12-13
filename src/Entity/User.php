@@ -31,9 +31,9 @@ class User extends BaseUser
     private $firstname;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
-    private $imageProfile;
+    private $imageProfile = "img/default_user.png";
 
     /**
      * @var ?\Doctrine\Common\Collections\ArrayCollection
