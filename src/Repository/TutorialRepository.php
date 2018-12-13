@@ -14,7 +14,7 @@ class TutorialRepository extends ServiceEntityRepository
         parent::__construct($registry, Tutorial::class);
     }
 
-    public function findByPage($page = 1, $count = 5, $publised = null) {
+    public function findByPage($page = 1, $count = 5, $published = null) {
         $offset = ($page - 1) * $count; 
         $queryBuilder = $this->createQueryBuilder('a')
             ->select('a')
