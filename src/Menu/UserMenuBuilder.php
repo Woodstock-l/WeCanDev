@@ -19,16 +19,18 @@ class UserMenuBuilder
     public function createMenu()
     {
         $user = $this->tokenStorage->getToken()->getUser();
+
         $menu = $this->factory->createItem('root');
         if(isset($user)){
             $parent = $menu->addChild($user->getUsername(), ['uri' => '#']);            
         }
         $parent->setExtra('translation_domain', false); // Na pas traduire le pseudo
 
+
         $parent->addChild('logout', ['route' => 'fos_user_security_logout']);
 
-        if ($user->hasRole('ROLE_SUPER_ADMIN')) {
-            // Ajout menu SUPER ADMIN
+        if ($user->hasRole('ROLE_USER')) {
+            $menu->addChild('user', ['url' => '#']);
         }
 
         return $menu;

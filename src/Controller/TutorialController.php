@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 
 use App\Form\TutorialType;
 use App\Entity\Tutorial;
@@ -99,10 +100,28 @@ class TutorialController extends Controller
     public function recentTutorials($count = 5)
     {
         $em = $this->getDoctrine()->getManager();
-        $entities = $em->getRepository(Tutorial::class)->findBy(['publication' => true], ['id' => 'DESC'], $count);
+        $entities = $em->getRepository(Tutorial::class)->findBy(['published' => true], ['id' => 'DESC'], $count);
 
-        return $this->render('tutorial/_recent_tutorials.html.twig', array(
+        return $this->render('tutorial/_recent_tutorial.html.twig', array(
             'entities' => $entities,
         ));
     }
+
+    /**
+     * @Route("/pdf/{id}", name="pdf", requirements={"id" = "\d+"})
+     */
+    public function pdf(Request $request, Tutorial $entity)
+        {
+            $path = $request->server->get('DOCUMENT_ROOT');
+            $path = rtrim($path, "/");
+
+            $html = $this->renderView('tutorial/pdf.html.twig', array(
+                'entity' => $entity,
+                'path' => $path,
+            ));
+    
+            return new PdfResponse(
+                $this->get('knp_snappy.pdf')->getOutputFromHtml($html), 'tutorial.pdf'
+            );
+        }
 }
