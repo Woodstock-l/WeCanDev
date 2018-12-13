@@ -2,7 +2,6 @@ $primary: #28829b;
 $light: #aaa;
 @import "~bootswatch/dist/Pulse/_variables";
 @import "~bootstrap/scss/bootstrap";
-
 body {
     padding-top: $nav-link-height + ($navbar-padding-y * 2);
 }
@@ -79,3 +78,4 @@ body {
     min-height: 100vh;
     padding-top: 15px;
 }
+

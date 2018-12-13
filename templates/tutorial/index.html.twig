@@ -32,7 +32,8 @@
             </li>
         </ul>
         <p>     Donnez une note à ce tutorial.</p>
-      <p class="card-text">{{ entity.content }}</p>
+      <p class="card-text">{{ entity.content|raw }}</p>
+
       <p class="card-text"><small class="text-muted">{{ entity.dateUpdate|date('d/m/Y H:i') }}</small></p>
     </div>
   </div>

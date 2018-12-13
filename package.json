@@ -19,6 +19,8 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "codemirror": "^5.42.0",
+        "highlight.js": "^9.13.1",
         "summernote": "^0.8.11"
     }
 }

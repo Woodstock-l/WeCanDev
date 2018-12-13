@@ -4,9 +4,11 @@ security:
 
     role_hierarchy:
         ROLE_SUPER_ADMIN: ROLE_ADMIN
+
         ROLE_ADMIN: ROLE_USER
         ROLE_CONTRIBUTOR: ROLE_USER
         ROLE_USER : ROLE_USER
+
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
