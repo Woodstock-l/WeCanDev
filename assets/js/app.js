@@ -18,9 +18,11 @@ import css from 'highlight.js/lib/languages/css';
 import php from 'highlight.js/lib/languages/php';
 import twig from 'highlight.js/lib/languages/twig';
 
-$(function() {
 
+$(function() {   
+        
     $('.summernote').summernote({
+        
         height: 250,   
         codemirror: { // codemirror options
             theme: 'monokai',
