@@ -2,6 +2,15 @@
 {% block page_class %}{% endblock %}
 {% block page_content %}
 
+{#<header class="main-header">
+    {% embed 'decorator/_navbar.html.twig' with {'class': 'fixed-top navbar-dark bg-dark', 'brandUrl': path('index') } %}
+        {% block brand %}
+            WeCanDev
+        {% endblock %}
+    {% endembed %}
+    
+</header>#}
+
 <!--home-header start -->
 		<section class="home-header">
 			<div class="container-fluid">
@@ -26,7 +35,7 @@
 
             <a href="{{ path('tutorial_index') }}" class="btn btn-secondary">{{ 'tutorial.show_all'|trans }}</a>
         </div>
-{% endblock page_content %}
+{% endblock %}
 
 {% block javascripts %}
 {% endblock %}

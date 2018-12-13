@@ -27,7 +27,6 @@ date:
 user:
   type:
     client: Client
-    fournisseur: Fournisseur
 
 logout: .icon-door-open Se déconnecter
 
@@ -35,16 +34,16 @@ registration:
   policy: Accepter les conditions générales.
 
 register:
-  name: Nom
+  name: Nom 
   firstname: Prénom
-
-form:
-  username: Pseudo
+  success: "Vous inscription est bien validée. Bienvenue sur WeCanDev !"
 
 tutorial:
   index:
     title: Liste des tutoriels
     count: "{0} Aucun tutoriel|{1} Il y a 1 tutoriel|]1,Inf[ Il y a %count% tutoriels"
+  star: .icon-star
+
   new:
     title: Ajouter un nouveau tutoriel
     success: Le tutoriel a bien été ajouté !
@@ -66,3 +65,10 @@ tutorial:
   published: Publier le tutoriel  
   pdf: Télécharger le tutoriel en PDF
 
+role:
+  user: Utilisateur
+  super_admin: Administrateur
+  contributor: Contributeur
+
+form:
+  username: Pseudo
