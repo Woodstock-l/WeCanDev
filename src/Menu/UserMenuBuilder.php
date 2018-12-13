@@ -19,9 +19,11 @@ class UserMenuBuilder
     public function createMenu()
     {
         $user = $this->tokenStorage->getToken()->getUser();
-        $menu = $this->factory->createItem('menu');
 
-        $parent = $menu->addChild('pseudo', ['uri' => '#']);
+        $menu = $this->factory->createItem('root');
+        if(isset($user)){
+            $parent = $menu->addChild($user->getUsername(), ['uri' => '#']);            
+        }
         $parent->setExtra('translation_domain', false); // Na pas traduire le pseudo
 
 
