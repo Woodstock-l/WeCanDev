@@ -10,7 +10,7 @@ use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 
 use App\Form\TutorialType;
 use App\Entity\Tutorial;
-// use App\Entity\TutorialFollow;
+use App\Entity\TutorialFollow;
 
 
 /**
@@ -48,54 +48,54 @@ class TutorialController extends Controller
     {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
-        // $af = $em->getRepository(Follow::class)->findOneBy(array(
-        //     'article' => $entity,
-        //     'user' =>$user,
-        // ));
-        // $isFollow = is_object($af);
+        $af = $em->getRepository(TutorialFollow::class)->findOneBy(array(
+            'tutorial' => $entity,
+            'user' =>$user,
+        ));
+        $isFollow = is_object($af);
 
         return $this->render('tutorial/show.html.twig', array(
             'entity' => $entity,
-            // 'isFollow' => $isFollow,
+            'isFollow' => $isFollow,
         ));
     }
 
     /**
      * @Route("/follow/{id}", name="follow", requirements={"id" = "\d+"})
      */
-    // public function follow(Request $request, Tutorial $entity)
-    // {
-    //     $isFollow = false;
-    //     $user = $this->getUser();
-    //     if (is_object($user)){
-    //         $em = $this->getDoctrine()->getManager();
-    //         $af = $em->getRepository(TutorialFollow::class)->findOneBy(array(
-    //             'article' => $entity,
-    //             'user' =>$user,
-    //         ));
-    //         if ($af !== null){
-    //             $em->remove($af);
-    //         }
-    //         else {
-    //             $af = new TutorialFollow();
-    //             $af->setTutorial($entity)->setUser($user);
-    //             $em->persist($af);
+    public function follow(Request $request, Tutorial $entity)
+    {
+        $isFollow = false;
+        $user = $this->getUser();
+        if (is_object($user)){
+            $em = $this->getDoctrine()->getManager();
+            $af = $em->getRepository(TutorialFollow::class)->findOneBy(array(
+                'article' => $entity,
+                'user' =>$user,
+            ));
+            if ($af !== null){
+                $em->remove($af);
+            }
+            else {
+                $af = new TutorialFollow();
+                $af->setTutorial($entity)->setUser($user);
+                $em->persist($af);
 
-    //             $isFollow = true;
-    //         }
+                $isFollow = true;
+            }
 
-    //         $em->flush();
-    //     }
+            $em->flush();
+        }
 
-    //     if ($request->isXmlHttpRequest()) {
-    //         return $this->json(array(
-    //             'success' => true,
-    //             'isFollow' => $isFollow,
-    //         ));
-    //     }
+        if ($request->isXmlHttpRequest()) {
+            return $this->json(array(
+                'success' => true,
+                'isFollow' => $isFollow,
+            ));
+        }
 
-    //     return $this->redirectToRoute('tutorial_show', array('id' => $entity->getId()));
-    // }    
+        return $this->redirectToRoute('tutorial_show', array('id' => $entity->getId()));
+    }    
         
     public function recentTutorials($count = 5)
     {
