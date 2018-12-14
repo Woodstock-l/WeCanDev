@@ -33,7 +33,7 @@ class TutorialType extends AbstractType {
             ->add('content', null, array(
                 'label' => 'tutorial.content',
                 'attr' => [
-                    'class' => 'summernote',
+                    'class' => 'summernote'
                 ]
             ))
             ->add('published', null, array(
