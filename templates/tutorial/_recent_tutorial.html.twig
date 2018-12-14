@@ -4,7 +4,7 @@
         <li class="media col-md-2 col-sm-12 container">
             <div class="row">
                 {% if entity.image is not empty %}
-                <img style="max-width:320px;" class="mr-3 col-md-12" src="https://picsum.photos/200/300/?random{#{{ asset('/uploads/' ~ entity.image.path) }}#}" alt="{{ entity.title }}">
+                <img style="max-width:320px;" class="mr-3 col-md-12" src="{{ asset('/uploads/' ~ entity.image.path) }}" alt="{{ entity.title }}">
                 {% endif %}
                 
                 <div class="media-body col-md-12 text-center">

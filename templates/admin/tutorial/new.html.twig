@@ -8,17 +8,48 @@
         {{ 'tutorial.new.title'|trans }}
     {% endblock %}
 
-
     {% block body %}
-        {# Formulaire #}
-      {% include 'admin/tutorial/_form.html.twig' %}
-
+    {# Formulaire #}
+      {% include 'admin/tutorial/_form.html.twig' with {'id': 'form_tuto'} %}
     {% endblock %}
 
     {% block footer %}
     <a href="{{ path('admin_tutorial_index') }}" class="btn btn-secondary">Annuler</a>
     <button type="submit" class="btn btn-primary">Envoyer</button>
-    {% endblock %}    
+    {% endblock %}
+
+    {% block javascripts %}
+	    <script>
+            {# Déclaration des variables #}
+            var $form = $(e.target);
+            var $form_tuto = $('#form_tuto')
+            var $form_error = $('.form-error');
+
+            var title = $('#title');
+            var category = $('#category');
+            var content = $('#content');
+
+            {# Requête jQuery - Ajax #}
+            $form_tuto.submit(function(e){
+                e.preventDefault();
+
+                $form_error = '';
+
+                if(title.length == 0 | !isCategory(category) | content.length < 50) {
+                    $form_error = "Veuillez renseigner tous les champs";
+                } else {
+                    if($form_error == 0) {
+                        $form.ajaxSubmit({
+                            url: '_form.html.twig',
+				            type: 'POST',
+                            data: $form_tuto.serialize(),
+                            dataType: 'html',
+                        });
+                    }
+                }
+            });
+	    </script>
+    {% endblock %}
 
 {% endembed %}
 {{ form_end(form) }}

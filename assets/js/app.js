@@ -128,3 +128,4 @@ $(function() {
     // On simule un click souris des boutons cochés
     $("ul.notes-echelle input:checked").trigger("click");
 });
+
