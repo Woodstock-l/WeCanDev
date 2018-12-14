@@ -11,6 +11,7 @@ use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use App\Form\TutorialType;
 use App\Entity\Tutorial;
 use App\Entity\TutorialFollow;
+use App\Entity\Comment;
 
 
 /**
