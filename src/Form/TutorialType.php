@@ -7,7 +7,10 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Doctrine\ORM\EntityRepository;
+
+use App\Form\Tutorial;
 use App\Form\ImageType;
 
 class TutorialType extends AbstractType {
@@ -37,5 +40,12 @@ class TutorialType extends AbstractType {
                 'label' => 'tutorial.published'
             ))
         ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data' => Tutorial::class,
+        ]);
     }
 }
