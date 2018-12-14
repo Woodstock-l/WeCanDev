@@ -83,8 +83,11 @@ class TutorialController extends Controller
                 $em->persist($af);
 
                 $isFollow = true;
+            }
+        }
+    }
               
-     /**
+    /**
      * @Route("/rating/{id}", requirements={"id" = "\d+"}, name="rating")
      */
     public function rating(Request $request, Tutorial $entity)
