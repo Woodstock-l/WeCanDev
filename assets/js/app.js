@@ -66,7 +66,7 @@ $(function() {
             $.getJSON($(this).attr('href'), function(data) {
 
                 if (data.success) {
-                    if(data.isFollow) { // Si on suis l'article
+                    if(data.isFollow) { // Si on suit le tuto
                         $(element).addClass('text-warning').removeClass('text-primary');
                     } else {
                         $( element ).addClass( 'text-primary' ).removeClass( 'text-warning' );
