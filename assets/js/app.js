@@ -18,11 +18,13 @@ import css from 'highlight.js/lib/languages/css';
 import php from 'highlight.js/lib/languages/php';
 import twig from 'highlight.js/lib/languages/twig';
 
+
 //WISYWIG
 
-$(function() {
-
+$(function() {   
+        
     $('.summernote').summernote({
+        
         height: 250,   
         codemirror: { // codemirror options
             theme: 'monokai',
@@ -68,7 +70,7 @@ $(function() {
             $.getJSON($(this).attr('href'), function(data) {
 
                 if (data.success) {
-                    if(data.isFollow) { // Si on suis l'article
+                    if(data.isFollow) { // Si on suit le tuto
                         $(element).addClass('text-warning').removeClass('text-primary');
                     } else {
                         $( element ).addClass( 'text-primary' ).removeClass( 'text-warning' );
@@ -132,6 +134,7 @@ $(function() {
     $("ul.notes-echelle input:checked").trigger("click");
 });
 
+
 // Tableau de memorisation des notes pour chaque liste
 var ArrListeEtoile = new Object();
 
@@ -169,3 +172,4 @@ function CreateListeEtoile(idListe, nbEtoile){
 	
 	document.getElementById(idListe).outerHTML = renduListe;
 }
+

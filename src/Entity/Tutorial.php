@@ -295,10 +295,47 @@ class Tutorial
 
         return $this;
     }
+    /*
+     * @ORM\OneToMany(targetEntity="App\Entity\TutorialFollow", mappedBy="tutorial", orphanRemoval=true)
+     */
+     private $followers;
+
+    /**
+     * @return Collection|TutorialFollow[]
+     */
+    public function getFollowers(): Collection
+    {
+        return $this->followers;
+    }
+ 
+    public function addFollower(TutorialFollow $follower): self
+    {
+        if (!$this->followers->contains($follower)) {
+            $this->followers[] = $follower;
+            $follower->setTutorial($this);
+        }
+ 
+        return $this;
+    }
+ 
+    public function removeFollower(TutorialFollow $follower): self
+    {
+        if ($this->followers->contains($follower)) {
+            $this->followers->removeElement($follower);
+            // set the owning side to null (unless already changed)
+            if ($follower->getTutorial() === $this) {
+                $follower->setTutorial(null);
+            }
+        }
+ 
+        return $this;
+    }
+
 
     public function __construct()
     {
         $this->dateCreate = new \DateTime;
         $this->dateUpdate = null;
+        $this->followers = new ArrayCollection();
     }
 }
