@@ -39,6 +39,9 @@ ul.notes-echelle.js input {
     visibility:hidden;
     display:none
 }
+ul.notes-echelle li a {
+    text-decoration: none;
+}
 /* Effet lorsque une note est cochée */
 ul.notes-echelle li.note-checked {
     color:rgb(223, 206, 53);
