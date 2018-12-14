@@ -199,36 +199,7 @@ class Tutorial
         return $this;
     }
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     * @var int
-     */
-    private $rating;
-
-    /**
-     * Get the value of rating
-     *
-     * @return  int
-     */ 
-    public function getRating()
-    {
-        return $this->rating;
-    }
-
-    /**
-     * Set the value of rating
-     *
-     * @param  int  $rating
-     *
-     * @return  self
-     */ 
-    public function setRating(int $rating)
-    {
-        $this->rating = $rating;
-
-        return $this;
-    }
-
+    
     /**
      * @ORM\Column(type="datetime", nullable=true)
      * @var ?\DateTime
@@ -290,6 +261,41 @@ class Tutorial
     }
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Rating", mappedBy="tutorial", orphanRemoval=true)
+     */
+    private $userRate;
+
+    /**
+     * @return Collection|Rating[]
+    */
+    public function getUserRate(): Collection
+    {
+        return $this->userRate;
+    }
+
+    public function addRate(Rating $userRate): self
+    {
+        if (!$this->userRates->contains($userRate)) {
+        $this->userRates[] = $userRate;
+            $userRate->setTutorials($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRate(Rating $userRate): self
+    {
+        if ($this->userRates->contains($userRate)) {
+            $this->userRates->removeElement($userRate);
+            // set the owning side to null (unless already changed)
+            if ($userRate->getTutorials() === $this) {
+                $userRate->setTutorials(null);
+            }
+        }
+
+        return $this;
+    }
+    /*
      * @ORM\OneToMany(targetEntity="App\Entity\TutorialFollow", mappedBy="tutorial", orphanRemoval=true)
      */
      private $followers;
@@ -324,7 +330,7 @@ class Tutorial
  
         return $this;
     }
- 
+
 
     public function __construct()
     {

@@ -10,9 +10,9 @@ use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 
 use App\Form\TutorialType;
 use App\Entity\Tutorial;
+use App\Entity\Rating;
 use App\Entity\TutorialFollow;
 use App\Entity\Comment;
-
 
 /**
  * @Route("/tutorial", name="tutorial_")
@@ -83,12 +83,43 @@ class TutorialController extends Controller
                 $em->persist($af);
 
                 $isFollow = true;
+              
+     /**
+     * @Route("/rating/{id}", requirements={"id" = "\d+"}, name="rating")
+     */
+    public function rating(Request $request, Tutorial $entity)
+    {
+        $isRating = false;
+
+        //Tester si l'utilisateur a déjà noté l'article
+        $user = $this->getUser();
+
+        if (is_object($user))
+        {
+            $em = $this->getDoctrine()->getManager();
+            $note = $em->getRepository(Rating::class)->findOneBy(array(
+                'tutorials' => $entity,
+                'user' =>$user,
+            ));
+
+            if ($note !== null) // L'utilisateur a déjà donné une note à l'article
+            {
+                $em->remove($note);
             }
+            else // L'utilisateur n'a pas '
+            {
+                $note = new Rating();
+                $note->setTutorials($entity)->setUser($user);
+
+                $em->persist($note);
+
+                $isRating = true;
+             }
 
             $em->flush();
         }
 
-        if ($request->isXmlHttpRequest()) {
+      if ($request->isXmlHttpRequest()) {
             return $this->json(array(
                 'success' => true,
                 'isFollow' => $isFollow,
@@ -96,7 +127,9 @@ class TutorialController extends Controller
         }
 
         return $this->redirectToRoute('tutorial_show', array('id' => $entity->getId()));
-    }    
+
+    }
+
         
     public function recentTutorials($count = 5)
     {
