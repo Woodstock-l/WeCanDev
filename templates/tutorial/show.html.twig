@@ -3,9 +3,9 @@
 {% block page_content %}
     <article>
         <h2>
-            {# {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-            <a href="{{ path('tutorial_follow', {'id': entity.id})}}" class="follow-link {% if isFollow %}text-warning{% else %}text-light{% endif %}"><i class="fa fa-star"></i></a>
-            {% endif %} #}
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <a href="{{ path('tutorial_follow', {'id': entity.id})}}" class="follow-link {% if isFollow %}text-warning{% else %}text-light{% endif %}"><i class="fas fa-heart"></i></a>
+            {% endif %}
             {{ entity.title }}
         </h2>
         {% if entity.image is not empty %}

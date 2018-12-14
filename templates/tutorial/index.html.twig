@@ -9,6 +9,9 @@
     {% endif %}
     <div class="card-body">
       <h5 class="card-title"><a href="{{ path('tutorial_show', {'id': entity.id}) }}">{{ entity.title }}</a></h5>
+
+      <p class="card-text">{{ entity.content|raw|nl2br }}</p>
+
         <ul class="notes-echelle">
             <li>
                 <label for="note01" title="Note&nbsp;: 1 sur 5">{{ 'tutorial.star'|trans|parse_icons }}</label>
