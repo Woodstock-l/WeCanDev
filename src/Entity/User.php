@@ -42,10 +42,16 @@ class User extends BaseUser
      */
     private $tutorials;
 
+    /**
+    * @ORM\OneToMany(targetEntity="App\Entity\TutorialFollow", mappedBy="user", orphanRemoval=true)
+    */
+    private $followedTutorials;
+
+
     public function __construct()
     {
         parent::__construct();
-        
+        $this->followedTutorials = new ArrayCollection();
     }
 
     /**
@@ -131,4 +137,35 @@ class User extends BaseUser
 
         return $this;
     }
+
+     /**
+     * @return Collection|TutorialFollow[]
+     */
+     public function getFollowedTutorials(): Collection
+     {
+         return $this->followedTutorials;
+     }
+ 
+     public function addFollowedTutorial(TutorialFollow $followedTutorial): self
+     {
+         if (!$this->followedTutorials->contains($followedTutorial)) {
+             $this->followedTutorials[] = $followedTutorial;
+             $followedTutorial->setUser($this);
+         }
+ 
+         return $this;
+     }
+ 
+     public function removeFollowedTutorial(TutorialFollow $followedTutorial): self
+     {
+         if ($this->followedTutorials->contains($followedTutorial)) {
+             $this->followedTutorials->removeElement($followedTutorial);
+             // met le User à null (à moins que ça soit déjà changé)
+             if ($followedTutorial->getUser() === $this) {
+                 $followedTutorial->setUser(null);
+             }
+         }
+ 
+         return $this;
+     }
 }
