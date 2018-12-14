@@ -37,7 +37,7 @@
 <hr>
 
 <h2>Mes favoris</h2>
-{# {{ render(controller('App\\Controller\\TutorialController::recentTutorials')) }} #}
+{{ render(controller('App\\Controller\\TutorialController::follow')) }}
 
 <a class="btn btn-primary" href="{{ path('admin_tutorial_new') }}">Créer un nouveau tutorial</a>
 {% endblock %}
