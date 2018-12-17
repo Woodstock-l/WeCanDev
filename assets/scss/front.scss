@@ -56,7 +56,7 @@ ul.notes-echelle li.note-checked {
     background-color: #2d4059;
 }
 
-#recherche {
+#form_query {
     width:208px;
     height:24px;
     background:white;
@@ -64,11 +64,18 @@ ul.notes-echelle li.note-checked {
     border-radius:2em;
 }
   
-#recherche .loupe {
+#form_search{
     background:url(http://www.larevuedekenza.fr/wp-content/themes/quarter/images/sidebar/loupe.png) no-repeat 0 0;
     width:24px;
+    height: 26px;
+    margin-left: -30px;
+
 }
-  
+
+div.form-group{
+    margin: none;
+}
+     
 #recherche input {
     outline:0;
     border:0;

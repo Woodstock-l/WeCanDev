@@ -40,10 +40,11 @@
                 </ul>
 
                 {# Barre de recherche #}
-                <form class="form-inline" id="recherche" method="post">
-                    <input name="saisie" type="text" placeholder="Recherche..." required />
-                    <input class="loupe" type="submit" value="" />
-                </form>
+                
+
+					{{ render(controller('App\\Controller\\SearchController::searchBar')) }}
+
+
                 
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %} 
                 {# pour condition avec un rôle spécifique {% if is_granted('ROLE_NOMDUROLE') %} #}
