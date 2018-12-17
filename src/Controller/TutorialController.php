@@ -71,7 +71,7 @@ class TutorialController extends Controller
         if (is_object($user)){
             $em = $this->getDoctrine()->getManager();
             $af = $em->getRepository(TutorialFollow::class)->findOneBy(array(
-                'article' => $entity,
+                'tutorial' => $entity,
                 'user' =>$user,
             ));
             if ($af !== null){
