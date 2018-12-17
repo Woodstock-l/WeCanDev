@@ -31,11 +31,6 @@ class User extends BaseUser
     private $firstname;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $imageProfile = "img/default_user.png";
-
-    /**
      * @var ?\Doctrine\Common\Collections\ArrayCollection
      * @ORM\OneToMany(targetEntity="App\Entity\Tutorial", mappedBy="user")
      * @ORM\OrderBy({"id" = "DESC"})
@@ -46,6 +41,12 @@ class User extends BaseUser
     * @ORM\OneToMany(targetEntity="App\Entity\TutorialFollow", mappedBy="user", orphanRemoval=true)
     */
     private $followedTutorials;
+
+     /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Avatar", cascade={"all"}, orphanRemoval=true)
+     * @var ?\App\Entity\Avatar
+     */
+    private $avatar = "img/default_user.png";
 
 
     public function __construct()
@@ -118,26 +119,6 @@ class User extends BaseUser
         return $this;
     }
 
-    /**
-     * Get the value of imageProfile
-     */ 
-    public function getImageProfile()
-    {
-        return $this->imageProfile;
-    }
-
-    /**
-     * Set the value of imageProfile
-     *
-     * @return  self
-     */ 
-    public function setImageProfile($imageProfile)
-    {
-        $this->imageProfile = $imageProfile;
-
-        return $this;
-    }
-
      /**
      * @return Collection|TutorialFollow[]
      */
@@ -168,4 +149,28 @@ class User extends BaseUser
  
          return $this;
      }
+
+     /**
+     * Get the value of avatar
+     *
+     * @return  ?\App\Entity\Avatar
+     */ 
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * Set the value of avatar
+     *
+     * @param  ?\App\Entity\Avatar  $avatar
+     *
+     * @return  self
+     */ 
+    public function setAvatar(?\App\Entity\Avatar $avatar)
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
 }

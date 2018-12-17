@@ -11,6 +11,9 @@ date:
   update: Date de modification
 
 user:
+  name: Nom
+  firstname: Prénom
+  avatar: Avatar
   type:
     client: Client
 
