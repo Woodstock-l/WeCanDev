@@ -6,7 +6,7 @@
 
 {% block page_content %}
 <header class="main-header">
-    {% embed 'decorator/_navbar.html.twig' with {'class': 'fixed-top navbar-dark bg-primary', 'brandUrl': path('index') } %}
+    {% embed 'decorator/_navbar.html.twig' with {'class': 'fixed-top navbar-dark bg-darkblue', 'brandUrl': path('index') } %}
         {% block brand %}
             WeCanDev
         {% endblock %}
@@ -22,9 +22,17 @@
 <h2>Mes informations personnelles</h2>
 
 <ul class="list-group">
-    <li class="list-group-item">{{ user.imageProfile }}</li>
+    <li class="list-group-item">
+    {% if user.avatar is not empty %}
+        <img src="{{ asset('/uploads/' ~ user.avatar.path ) }}" alt="{{ user.avatar.name }}" class="img-responsive"/>
+    {% else %}
+        <img class="w-100" src="{{ asset('./img/default_user.jpg') }}" alt="Image par défaut">
+    {% endif %}
+    </li>
     <li class="list-group-item">Pseudo : {{ user.username }}</li>
     <li class="list-group-item">E-mail : {{ user.email }}</li>
+    <li class="list-group-item">Nom : {{ user.name }}</li>
+    <li class="list-group-item">Prénom : {{ user.firstname }}</li>
 </ul>
 
 <br>
@@ -37,7 +45,15 @@
 <hr>
 
 <h2>Mes favoris</h2>
-{{ render(controller('App\\Controller\\TutorialController::follow')) }}
+    <ul>
+    {% for follow in user.getFollowedTutorials %}
+        <li><a href="{{ path('tutorial_show', {'id': follow.tutorial.id }) }}">{{ follow.tutorial.title }}</a></li>
+    {% endfor %}
+    </ul>
 
-<a class="btn btn-primary" href="{{ path('admin_tutorial_new') }}">Créer un nouveau tutorial</a>
+<hr>
+
+<h2>Envie de proposer un nouveau tutoriel ?</h2>
+    <p>Si vous souhaitez proposer un nouveau tutoriel, n'hésitez pas à nous le soumettre en cliquant sur le bouton ci-dessous.</p>
+    <a class="btn btn-primary" href="{{ path('admin_tutorial_new') }}">Créer un nouveau tutorial</a>
 {% endblock %}

@@ -94,7 +94,7 @@ class TutorialController extends Controller
         if (is_object($user)){
             $em = $this->getDoctrine()->getManager();
             $af = $em->getRepository(TutorialFollow::class)->findOneBy(array(
-                'article' => $entity,
+                'tutorial' => $entity,
                 'user' =>$user,
             ));
             if ($af !== null){
@@ -117,8 +117,10 @@ class TutorialController extends Controller
     {
         $isRating = false;
 
+
         //Tester si l'utilisateur a déjà noté l'article
         $user = $this->getUser();
+        $rating = $request->query->get('notesA');
 
         if (is_object($user))
         {
@@ -128,27 +130,27 @@ class TutorialController extends Controller
                 'user' =>$user,
             ));
 
-            if ($note !== null) // L'utilisateur a déjà donné une note à l'article
-            {
-                $em->remove($note);
+            if ($note!== null){
+                $note->setRating($rating);
+                $em->persist($note);
             }
-            else // L'utilisateur n'a pas '
-            {
+            else {
                 $note = new Rating();
-                $note->setTutorials($entity)->setUser($user);
+                $note->setTutorials($entity)->setUser($user)->setRating($rating);
 
                 $em->persist($note);
 
                 $isRating = true;
-             }
+            }
 
             $em->flush();
+            // Test si l'utilisateur à déjà noté
+            // $note = repository()->find
         }
 
       if ($request->isXmlHttpRequest()) {
             return $this->json(array(
                 'success' => true,
-                'isFollow' => $isFollow,
             ));
         }
 

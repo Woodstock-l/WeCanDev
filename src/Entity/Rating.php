@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\RatingRepository")
@@ -17,28 +18,21 @@ class Rating
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Tutorial")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Tutorial", inversedBy="userRate")
      * @ORM\JoinColumn(nullable=false)
      */
     private $tutorials;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="ratingTutorials")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
     /**
-     * @ORM\Column(type="integer")
-     * 
-     * @var int
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $rating;
-
-    public function __construct()
-    {
-        
-    }
 
     /**
      * Get the value of id
@@ -102,8 +96,6 @@ class Rating
 
     /**
      * Get the value of rating
-     *
-     * @return  int
      */ 
     public function getRating()
     {
@@ -113,11 +105,9 @@ class Rating
     /**
      * Set the value of rating
      *
-     * @param  int  $rating
-     *
      * @return  self
      */ 
-    public function setRating(int $rating)
+    public function setRating($rating)
     {
         $this->rating = $rating;
 
