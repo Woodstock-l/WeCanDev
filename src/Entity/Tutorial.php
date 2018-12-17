@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TutorialRepository")
@@ -25,6 +26,7 @@ class Tutorial
 
     /**
      * @ORM\Column(type="string", length=200)
+     * @Assert\NotBlank()
      */
     private $title;
 
@@ -50,6 +52,7 @@ class Tutorial
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      * @var string
      */
     private $content;
@@ -141,6 +144,7 @@ class Tutorial
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="tutorials")
+     * @Assert\NotBlank()
      * @var ?\Doctrine\Common\Collections\ArrayCollection
      */
     private $categories;
@@ -199,36 +203,7 @@ class Tutorial
         return $this;
     }
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     * @var int
-     */
-    private $rating;
-
-    /**
-     * Get the value of rating
-     *
-     * @return  int
-     */ 
-    public function getRating()
-    {
-        return $this->rating;
-    }
-
-    /**
-     * Set the value of rating
-     *
-     * @param  int  $rating
-     *
-     * @return  self
-     */ 
-    public function setRating(int $rating)
-    {
-        $this->rating = $rating;
-
-        return $this;
-    }
-
+    
     /**
      * @ORM\Column(type="datetime", nullable=true)
      * @var ?\DateTime
@@ -289,9 +264,82 @@ class Tutorial
         return $this;
     }
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Rating", mappedBy="tutorial", orphanRemoval=true)
+     */
+    private $userRate;
+
+    /**
+     * @return Collection|Rating[]
+    */
+    public function getUserRate(): Collection
+    {
+        return $this->userRate;
+    }
+
+    public function addRate(Rating $userRate): self
+    {
+        if (!$this->userRates->contains($userRate)) {
+        $this->userRates[] = $userRate;
+            $userRate->setTutorials($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRate(Rating $userRate): self
+    {
+        if ($this->userRates->contains($userRate)) {
+            $this->userRates->removeElement($userRate);
+            // set the owning side to null (unless already changed)
+            if ($userRate->getTutorials() === $this) {
+                $userRate->setTutorials(null);
+            }
+        }
+
+        return $this;
+    }
+    /*
+     * @ORM\OneToMany(targetEntity="App\Entity\TutorialFollow", mappedBy="tutorial", orphanRemoval=true)
+     */
+     private $followers;
+
+    /**
+     * @return Collection|TutorialFollow[]
+     */
+    public function getFollowers(): Collection
+    {
+        return $this->followers;
+    }
+ 
+    public function addFollower(TutorialFollow $follower): self
+    {
+        if (!$this->followers->contains($follower)) {
+            $this->followers[] = $follower;
+            $follower->setTutorial($this);
+        }
+ 
+        return $this;
+    }
+ 
+    public function removeFollower(TutorialFollow $follower): self
+    {
+        if ($this->followers->contains($follower)) {
+            $this->followers->removeElement($follower);
+            // set the owning side to null (unless already changed)
+            if ($follower->getTutorial() === $this) {
+                $follower->setTutorial(null);
+            }
+        }
+ 
+        return $this;
+    }
+
+
     public function __construct()
     {
         $this->dateCreate = new \DateTime;
         $this->dateUpdate = null;
+        $this->followers = new ArrayCollection();
     }
 }

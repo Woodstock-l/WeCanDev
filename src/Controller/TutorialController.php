@@ -10,8 +10,9 @@ use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 
 use App\Form\TutorialType;
 use App\Entity\Tutorial;
-// use App\Entity\TutorialFollow;
-
+use App\Entity\Rating;
+use App\Entity\TutorialFollow;
+use App\Entity\Comment;
 
 /**
  * @Route("/tutorial", name="tutorial_")
@@ -48,54 +49,90 @@ class TutorialController extends Controller
     {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
-        // $af = $em->getRepository(Follow::class)->findOneBy(array(
-        //     'article' => $entity,
-        //     'user' =>$user,
-        // ));
-        // $isFollow = is_object($af);
+        $af = $em->getRepository(TutorialFollow::class)->findOneBy(array(
+            'tutorial' => $entity,
+            'user' =>$user,
+        ));
+        $isFollow = is_object($af);
 
         return $this->render('tutorial/show.html.twig', array(
             'entity' => $entity,
-             'isFollow' => false,
+
+            'isFollow' => $isFollow,
+
         ));
     }
 
     /**
      * @Route("/follow/{id}", name="follow", requirements={"id" = "\d+"})
      */
-    // public function follow(Request $request, Tutorial $entity)
-    // {
-    //     $isFollow = false;
-    //     $user = $this->getUser();
-    //     if (is_object($user)){
-    //         $em = $this->getDoctrine()->getManager();
-    //         $af = $em->getRepository(TutorialFollow::class)->findOneBy(array(
-    //             'article' => $entity,
-    //             'user' =>$user,
-    //         ));
-    //         if ($af !== null){
-    //             $em->remove($af);
-    //         }
-    //         else {
-    //             $af = new TutorialFollow();
-    //             $af->setTutorial($entity)->setUser($user);
-    //             $em->persist($af);
+    public function follow(Request $request, Tutorial $entity)
+    {
+        $isFollow = false;
+        $user = $this->getUser();
+        if (is_object($user)){
+            $em = $this->getDoctrine()->getManager();
+            $af = $em->getRepository(TutorialFollow::class)->findOneBy(array(
+                'tutorial' => $entity,
+                'user' =>$user,
+            ));
+            if ($af !== null){
+                $em->remove($af);
+            }
+            else {
+                $af = new TutorialFollow();
+                $af->setTutorial($entity)->setUser($user);
+                $em->persist($af);
 
-    //             $isFollow = true;
-    //         }
+                $isFollow = true;
+            }
+        }
+    }
+              
+    /**
+     * @Route("/rating/{id}", requirements={"id" = "\d+"}, name="rating")
+     */
+    public function rating(Request $request, Tutorial $entity)
+    {
+        $isRating = false;
+        $user = $this->getUser();
+        $rating = $request->query->get('notesA');
 
-    //         $em->flush();
-    //     }
+        if (is_object($user))
+        {
+            $em = $this->getDoctrine()->getManager();
+            $note = $em->getRepository(Rating::class)->findOneBy(array(
+                'tutorials' => $entity,
+                'user' => $user,            
+            ));
+            if ($note!== null){
+                $note->setRating($rating);
+                $em->persist($note);
+            }
+            else {
+                $note = new Rating();
+                $note->setTutorials($entity)->setUser($user)->setRating($rating);
 
-    //     if ($request->isXmlHttpRequest()) {
-    //         return $this->json(array(
-    //             'success' => true,
-    //             'isFollow' => $isFollow,
-    //         ));
-    //     }
+                $em->persist($note);
 
-    //     return $this->redirectToRoute('tutorial_show', array('id' => $entity->getId()));
-    // }    
+                $isRating = true;
+            }
+
+            $em->flush();
+            // Test si l'utilisateur à déjà noté
+            // $note = repository()->find
+        }
+
+        if ($request->isXmlHttpRequest()) {
+            return $this->json(array(
+                'success' => true,
+            ));
+        }
+
+        return $this->redirectToRoute('tutorial_show', array('id' => $entity->getId()));
+
+    }
+
         
     public function recentTutorials($count = 5)
     {

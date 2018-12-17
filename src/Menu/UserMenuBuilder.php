@@ -24,14 +24,16 @@ class UserMenuBuilder
         if(isset($user)){
             $parent = $menu->addChild($user->getUsername(), ['uri' => '#']);            
         }
-        $parent->setExtra('translation_domain', false); // Na pas traduire le pseudo
+        $parent->setExtra('translation_domain', false); // Ne pas traduire le pseudo
 
-
-        $parent->addChild('logout', ['route' => 'fos_user_security_logout']);
+        $parent->addChild('Mon profil', ['route' => 'user_profile']);
+        $parent->addChild('Se déconnecter', ['route' => 'fos_user_security_logout']);
 
         if ($user->hasRole('ROLE_USER')) {
             $menu->addChild('user', ['url' => '#']);
         }
+
+        
 
         return $menu;
     }

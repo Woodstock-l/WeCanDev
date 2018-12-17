@@ -8,18 +8,21 @@
         {{ 'tutorial.new.title'|trans }}
     {% endblock %}
 
-
     {% block body %}
-        {# Formulaire #}
+    {# Formulaire #}
       {% include 'admin/tutorial/_form.html.twig' %}
-
     {% endblock %}
 
     {% block footer %}
     <a href="{{ path('admin_tutorial_index') }}" class="btn btn-secondary">Annuler</a>
     <button type="submit" class="btn btn-primary">Envoyer</button>
-    {% endblock %}    
+    {% endblock %}
 
 {% endembed %}
 {{ form_end(form) }}
+{% endblock %}
+
+
+{% block javascripts %}
+    <script src="{{ asset('build/js/tutorial-validation.js') }}"></script>
 {% endblock %}

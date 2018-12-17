@@ -1,5 +1,4 @@
 <div class="form-error">
-    {{ form_errors(form) }}
 </div>
 
 <div class="row">
@@ -21,6 +20,8 @@
     <div class="col-md-4 col-lg-2">
         {% if entity is defined and entity.image is not empty %}
             <img class="w-100" src="{{ asset('/uploads/' ~ entity.image.path) }}" alt="{{ entity.image.name }}">
+        {% else %}
+            <img class="w-100" src="{{ asset('./img/tuto.jpg') }}" alt="Image par défaut">
         {% endif %}
     </div>
 </div>

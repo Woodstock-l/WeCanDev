@@ -5,6 +5,10 @@ body {
     padding-top: $nav-link-height + ($navbar-padding-y * 2);
 }
 
+#titleTutorial {
+    font-size: 18px;
+}
+
 ul.notes-echelle {
 	margin:0;
 	padding:0;
@@ -38,6 +42,9 @@ ul.notes-echelle li.note-off label {
 ul.notes-echelle.js input {
     visibility:hidden;
     display:none
+}
+ul.notes-echelle li a {
+    text-decoration: none;
 }
 /* Effet lorsque une note est cochée */
 ul.notes-echelle li.note-checked {
@@ -289,8 +296,6 @@ animation-name: fadeInDown;
     margin-bottom:  26px;
 }
 /*.contact-add-info */
-
-
 .hm-foot-icon ul li{float:left;}
 .hm-foot-icon ul li>a {
     color: #636a82;
@@ -302,7 +307,7 @@ animation-name: fadeInDown;
     transition: .3s;
 }
 .hm-foot-icon ul li>a:hover{
-    color: #b636ff;
+    color: #ea5455;
 }/*hm-foot-icon*/
 
 .hm-footer-copyright p{

@@ -1,11 +1,32 @@
 $primary: #28829b;
-$light: #aaa;
+$dark: #2d4059;
+$light: lighten($dark, 5%);
 @import "~bootswatch/dist/Pulse/_variables";
 @import "~bootstrap/scss/bootstrap";
 body {
     padding-top: $nav-link-height + ($navbar-padding-y * 2);
 }
 
+
+/*-------------------------------------
+            HEADER
+--------------------------------------*/
+
+
+.bg-darkblue {
+    background-color: #2d4059;
+}
+
+/*-------------------------------------
+            ERROR FORM TUTO
+--------------------------------------*/
+.form-error {
+    font-size: 20px;
+}
+
+/*-------------------------------------
+            SIDEBAR
+--------------------------------------*/
 .main-sidebar {
     position: fixed;
     top: 0;
@@ -13,7 +34,7 @@ body {
     padding-top: $nav-link-height + ($navbar-padding-y * 2);
     min-height: 100vh;
     width: 230px;
-    background-color: $dark;
+    background-color: lighten($dark, 5%);
     z-index: 100;
 
     .nav {
@@ -24,19 +45,20 @@ body {
                 border-radius: 0px;
                 border-left: 3px solid transparent;
                 background-color: lighten($dark, 5%);
-                color: darken($light, 20%);
+                color: #f6f6f6;
                 padding-left: 8px;
 
                 &:hover, &:active, &:focus {
-                    background-color: $dark;
-                    color: $light;
+                    background-color: lighten($dark, 10%);
+                    color: #f6f6f6;
                 }
             }
 
             &.active {
                 > .nav-link {
                     border-left-color: $primary;
-                    background-color: $dark;
+                    background-color: lighten(#ffb400, 20%);
+                    color: $dark;
                 }
             }
 
@@ -44,18 +66,19 @@ body {
                 > .nav-item {
 
                     .nav-link {
-                        background-color: lighten($dark, 10%);
+                        background-color: lighten($dark, 5%);
                         padding-left: 20px;
-                        color: darken($light, 20%);
+                        color: #f6f6f6;
 
                         &:hover, &:active, &:focus {
-                            background-color: lighten($dark, 5%)
+                            background-color: lighten($dark, 10%);
+                            color: #f6f6f6;
                         }
                     }
 
                     &.active {
                         > .nav-link {
-                            color: $light;
+                            color:  #f6f6f6;
                         }
                     }
                 }
@@ -66,7 +89,7 @@ body {
 
     .nav-pills {
         .nav-link:hover:not(.active) {
-            background: none;
+            // background: none;
             border-color: transparent;
         }
     }

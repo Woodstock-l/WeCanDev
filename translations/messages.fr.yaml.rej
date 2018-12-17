@@ -1,8 +1,0 @@
-diff a/translations/messages.fr.yaml b/translations/messages.fr.yaml	(rejected hunks)
-@@ -17,7 +17,6 @@
-   policy: Accepter les conditions générales.
- 
- register:
-   name: Nom
-   firstname: Prénom
- 

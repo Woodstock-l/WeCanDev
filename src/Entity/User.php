@@ -31,21 +31,28 @@ class User extends BaseUser
     private $firstname;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $imageProfile;
-
-    /**
      * @var ?\Doctrine\Common\Collections\ArrayCollection
      * @ORM\OneToMany(targetEntity="App\Entity\Tutorial", mappedBy="user")
      * @ORM\OrderBy({"id" = "DESC"})
      */
     private $tutorials;
 
+    /**
+    * @ORM\OneToMany(targetEntity="App\Entity\TutorialFollow", mappedBy="user", orphanRemoval=true)
+    */
+    private $followedTutorials;
+
+     /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Avatar", cascade={"all"}, orphanRemoval=true)
+     * @var ?\App\Entity\Avatar
+     */
+    private $avatar = "img/default_user.png";
+
+
     public function __construct()
     {
         parent::__construct();
-        
+        $this->followedTutorials = new ArrayCollection();
     }
 
     /**
@@ -112,22 +119,57 @@ class User extends BaseUser
         return $this;
     }
 
-    /**
-     * Get the value of imageProfile
+     /**
+     * @return Collection|TutorialFollow[]
+     */
+     public function getFollowedTutorials(): Collection
+     {
+         return $this->followedTutorials;
+     }
+ 
+     public function addFollowedTutorial(TutorialFollow $followedTutorial): self
+     {
+         if (!$this->followedTutorials->contains($followedTutorial)) {
+             $this->followedTutorials[] = $followedTutorial;
+             $followedTutorial->setUser($this);
+         }
+ 
+         return $this;
+     }
+ 
+     public function removeFollowedTutorial(TutorialFollow $followedTutorial): self
+     {
+         if ($this->followedTutorials->contains($followedTutorial)) {
+             $this->followedTutorials->removeElement($followedTutorial);
+             // met le User à null (à moins que ça soit déjà changé)
+             if ($followedTutorial->getUser() === $this) {
+                 $followedTutorial->setUser(null);
+             }
+         }
+ 
+         return $this;
+     }
+
+     /**
+     * Get the value of avatar
+     *
+     * @return  ?\App\Entity\Avatar
      */ 
-    public function getImageProfile()
+    public function getAvatar()
     {
-        return $this->imageProfile;
+        return $this->avatar;
     }
 
     /**
-     * Set the value of imageProfile
+     * Set the value of avatar
+     *
+     * @param  ?\App\Entity\Avatar  $avatar
      *
      * @return  self
      */ 
-    public function setImageProfile($imageProfile)
+    public function setAvatar(?\App\Entity\Avatar $avatar)
     {
-        $this->imageProfile = $imageProfile;
+        $this->avatar = $avatar;
 
         return $this;
     }

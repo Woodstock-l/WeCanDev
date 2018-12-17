@@ -1,16 +1,3 @@
-menu:
-  admin:
-    users: .icon-users Utilisateurs
-    users_list: Liste des utilisateurs
-    users_new: Ajouter un nouvel utilisateur
-    tutorial: .icon-desktop Tutoriels
-    tutorial_list: Liste des tutoriels
-    tutorial_new: Ajouter un tutoriel
-    category: .icon-bookmark Catégories
-    category_list: Liste des catégories
-    category_new: Ajouter une catégorie
-    
-
 category:
   index:
     title: Liste des catégories
@@ -19,12 +6,14 @@ category:
     title: Ajouter une catégorie
   tutorial_count: Nombre de tutoriel
 
-
 date:
   create: Date d'ajout
   update: Date de modification
 
 user:
+  name: Nom
+  firstname: Prénom
+  avatar: Avatar
   type:
     client: Client
 
@@ -34,7 +23,7 @@ registration:
   policy: Accepter les conditions générales.
 
 register:
-  name: Nom 
+  name: Nom
   firstname: Prénom
   success: "Vous inscription est bien validée. Bienvenue sur WeCanDev !"
 
@@ -42,8 +31,6 @@ tutorial:
   index:
     title: Liste des tutoriels
     count: "{0} Aucun tutoriel|{1} Il y a 1 tutoriel|]1,Inf[ Il y a %count% tutoriels"
-  star: .icon-star
-
   new:
     title: Ajouter un nouveau tutoriel
     success: Le tutoriel a bien été ajouté !
@@ -64,6 +51,7 @@ tutorial:
   content: Contenu
   published: Publier le tutoriel  
   pdf: Télécharger le tutoriel en PDF
+  star: .icon-star
 
 role:
   user: Utilisateur
@@ -72,3 +60,15 @@ role:
 
 form:
   username: Pseudo
+
+menu:
+  admin:
+    tutorial: .icon-newspaper Articles
+    category: .icon-tags Catégories
+    tutorial_list: Listes des articles
+    tutorial_new: Ajouter un article
+    category_list: Listes des catégories
+    category_new: Ajouter une catégorie
+    users: .icon-users Utilisateurs
+    users_new: Ajouter un utilisateur
+    users_list: Liste des utilisateurs
