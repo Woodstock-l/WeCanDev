@@ -13,6 +13,7 @@
         {% endif %}
         <br/>
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
         <form method="GET" id="tuto-note" action="{{ path('tutorial_rating', {'id': entity.id }) }}">
             {#<ul class="notes-echelle">
                 <li>
@@ -35,6 +36,7 @@
                     <label for="note05" title="Note : 5 sur 5"><a href="{{ path('tutorial_rating', {'id': entity.id }) }}">{{ 'tutorial.star'|trans|parse_icons }}</a></label>
                     <input type="radio" name="notesA" id="note05" value="5" />
                 </li>
+
             </ul>#}
             <ul class="notes-echelle">
                 <li>
@@ -70,6 +72,31 @@
             {{ entity.content|raw }}
         </div>
 
-        <button type="button" class="btn btn-light"><a href="{{ path('tutorial_pdf', {'id': entity.id }) }}">{{ 'tutorial.pdf'|trans }}</a></button>
+        <a class="btn btn-success mt-3" href="{{ path('tutorial_pdf', {'id': entity.id }) }}">{{ 'tutorial.pdf'|trans }}</a>
+
+        <section id="comments" class="mt-5">
+            <h4> Commentaires</h4>
+                {% for comment in entity.comments %}
+                    <ul class="list-unstyled">
+                        <li class="media">
+                            {# <img class="mr-3" src="{{ path('', {'id': entity.id }) }}" alt="avatar"> #}
+                            <div class="media-body">
+                                <h6 class="mt-0 mb-1">{{comment.user}} (<small>{{ comment.createdAt | date ('d/m/Y')}}</small>)</h6>
+                                {{comment.content|raw}}
+                            </div>
+                        </li>
+                    </ul>
+                {% endfor %}
+
+            {{ form_start(commentForm) }}
+            {{ form_errors(commentForm) }}
+            {{ form_row(commentForm.content, {'attr': {'placeholder': "Votre commentaire"}})}}
+
+            <button type="submit" class="btn btn-success mb-5 ">Commenter</button>
+                    
+            {{ form_end(commentForm)}}
+               
+        </section>
+
     </article>
 {% endblock %}
