@@ -7,6 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
 use App\Entity\User;
+use App\Entity\Tutorial;
 
 /**
  * @Route("/user", name="user_")

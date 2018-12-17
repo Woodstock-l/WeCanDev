@@ -24,7 +24,7 @@ class UserMenuBuilder
         if(isset($user)){
             $parent = $menu->addChild($user->getUsername(), ['uri' => '#']);            
         }
-        $parent->setExtra('translation_domain', false); // Na pas traduire le pseudo
+        $parent->setExtra('translation_domain', false); // Ne pas traduire le pseudo
 
 
         $parent->addChild('logout', ['route' => 'fos_user_security_logout']);

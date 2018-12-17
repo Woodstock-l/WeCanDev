@@ -37,7 +37,11 @@
 <hr>
 
 <h2>Mes favoris</h2>
-{{ render(controller('App\\Controller\\TutorialController::follow')) }}
+    <ul>
+    {% for follow in user.getFollowedTutorials %}
+        <li><a href="{{ path('tutorial_show', {'id': follow.tutorial.id }) }}">{{ follow.tutorial.title }}</a></li>
+    {% endfor %}
+    </ul>
 
 <a class="btn btn-primary" href="{{ path('admin_tutorial_new') }}">Créer un nouveau tutorial</a>
 {% endblock %}
