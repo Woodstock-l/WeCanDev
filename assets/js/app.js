@@ -55,6 +55,47 @@ $(function() {
         hljs.highlightBlock(block);
     });
 
+//---------------------------FIN PARAMETRE WYSIWYG ET HIGHLIGHT-------------------------------
+
+//---------------------------REQUETE AJAX SEARCHBAR-------------------------------------------
+
+$('#form_query').on('keyup',delay(function(){
+    var $form = $(this).closest('form');
+    $.ajax({
+        type: "POST",
+        data: $form.serialize(),
+        url: $form.attr('action'),
+        success: function(data){
+            var html = '';
+            data.forEach(element => {
+                html +='<a href="'+element.url+'"><li>'+element['title']+'</li></a>'
+            });
+            
+            $('#resultSearch').html(html)
+                    
+        }
+    })
+},500));
+
+
+//===================================
+//      DELAY
+//===================================
+function delay(callback, ms) {
+    var timer = 0;
+    return function() {
+      var context = this, args = arguments;
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        callback.apply(context, args);
+      }, ms || 0);
+    };
+  }
+
+//---------------------------FIN REQUETE AJAX SEARCHBAR-------------------------------------------
+
+
+
     var $followLink = $('.follow-link');
 
     // Pour chaque élément ".follow-link"
