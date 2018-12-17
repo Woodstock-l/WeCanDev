@@ -132,6 +132,15 @@ $(function() {
     $("ul.notes-echelle input:checked").parent("li").trigger("mouseover");
     // On simule un click souris des boutons cochés
     $("ul.notes-echelle input:checked").trigger("click");
+
+    // NOTE TUTO
+    var $tutoNoteForm = $('#tuto-note');
+    $tutoNoteForm.find('[name="notesA"]').change(function() {
+        
+        $.get($tutoNoteForm.attr('action'), $tutoNoteForm.serialize(), function() {
+
+        });
+    });
 });
 
 

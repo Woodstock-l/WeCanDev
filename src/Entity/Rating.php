@@ -30,6 +30,11 @@ class Rating
     private $user;
 
     /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $rating;
+
+    /**
      * Get the value of id
      */ 
     public function getId()
@@ -85,6 +90,26 @@ class Rating
     public function setUser($user)
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of rating
+     */ 
+    public function getRating()
+    {
+        return $this->rating;
+    }
+
+    /**
+     * Set the value of rating
+     *
+     * @return  self
+     */ 
+    public function setRating($rating)
+    {
+        $this->rating = $rating;
 
         return $this;
     }
