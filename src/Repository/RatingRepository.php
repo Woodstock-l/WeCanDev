@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Rating;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @method Rating|null find($id, $lockMode = null, $lockVersion = null)
@@ -47,4 +48,21 @@ class RatingRepository extends ServiceEntityRepository
         ;
     }
     */
+    /*public function avgRating($id) 
+    {
+            $queryAvg = $this->getDoctrine()
+            ->getRepository(Rating::class);
+            
+            $queryAvgRating = $queryAvg->createQueryBuilder('r')
+            ->select("avg(r.rating) as rating_avg, count(r.rating) as rating_count")
+            ->where('r.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery();
+            
+            $avgRate = $queryAvgRating->getResult();
+            
+            $result = ("Note moyenne: ".$avgRate);
+            
+            return new Response($result);
+    }*/
 }
