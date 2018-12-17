@@ -57,7 +57,9 @@ class TutorialController extends Controller
 
         return $this->render('tutorial/show.html.twig', array(
             'entity' => $entity,
+
             'isFollow' => $isFollow,
+
         ));
     }
 
