@@ -28,7 +28,7 @@ class TutorialFollow
     private $tutorial;
  
     /**
-    * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="followedArticles")
+    * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="followedTutorials")
     * @ORM\JoinColumn(nullable=false)
     */
     private $user;

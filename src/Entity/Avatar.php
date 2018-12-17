@@ -7,10 +7,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ImageRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\AvatarRepository")
  * @ORM\HasLifecycleCallbacks
  */
-class Image
+class Avatar
 {
     /**
      * @ORM\Id()
@@ -19,7 +19,6 @@ class Image
      */
     private $id;
 
-    
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -52,7 +51,7 @@ class Image
     public function getPath(): ?string
     {
         if (empty($this->path)) {
-            return '../img/tuto.jpg';
+            return '../img/default_user.jpg';
         }
         return $this->path;
     }
@@ -108,7 +107,7 @@ class Image
      */
     public function generatePath()
     {
-        if ($this->file instanceof UploadedFile && !empty($this->file->guessExtension())) {
+        if ($this->file instanceof UploadedFile) {
             // Génére le chemin du fichier à uploader
             $this->path = uniqid('img_') . '.' . $this->file->guessExtension();
         }
