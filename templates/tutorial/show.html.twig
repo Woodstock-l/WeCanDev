@@ -72,7 +72,7 @@
             {{ entity.content|raw }}
         </div>
 
-        <a class="btn btn-success mt-3" href="{{ path('tutorial_pdf', {'id': entity.id }) }}">{{ 'tutorial.pdf'|trans }}</a>
+        <button id="btnPdf" type="button" class="btn btn-light"><a href="{{ path('tutorial_pdf', {'id': entity.id }) }}">{{ 'tutorial.pdf'|trans }}</a></button>
 
         <section id="comments" class="mt-5">
             <h4> Commentaires</h4>
