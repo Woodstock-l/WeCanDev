@@ -29,10 +29,10 @@
                         Menu
                         </a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="{{ path("admin_user_index") }}">Gestion des utilisateur</a>
+								<a class="dropdown-item" href="{{ path("admin_user_index") }}">Gestion des utilisateurs</a>
 								<a class="dropdown-item" href="{{ path("admin_category_index") }}">Gestion des catégories</a>
 								<a class="dropdown-item" href="{{ path("tutorial_index") }}">Tutoriels</a>
-								<a class="dropdown-item" href="{{ path("admin_tutorial_new") }}">Ajouter Un tutoriel</a>
+								<a class="dropdown-item" href="{{ path("admin_tutorial_new") }}">Ajouter un tutoriel</a>
                             </div>
 						{% elseif is_granted('ROLE_CONTRIBUTOR') %}
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -46,15 +46,12 @@
                 </ul>
 
                 {# Barre de recherche #}
-                
-
-					{{ render(controller('App\\Controller\\SearchController::searchBar')) }}
+				{{ render(controller('App\\Controller\\SearchController::searchBar')) }}
 
 
                 
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %} 
                 {# pour condition avec un rôle spécifique {% if is_granted('ROLE_NOMDUROLE') %} #}
-                    
                         {{ knp_menu_render('user', {'style': 'horizontal-right'})}}
                     
                 {% else %}

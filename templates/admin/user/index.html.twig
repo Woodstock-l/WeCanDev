@@ -23,6 +23,7 @@
             <tr>
                 <td>{{ user.username }}</td>
                 <td>{{ user.email }}</td>
+                <td></td>
                 <td>{{ user.enabled ? 'Yes' : 'No' }}</td>
                 <td>{{ user.lastLogin ? user.lastLogin|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ user.roles ? user.roles|join(', ') : '' }}</td>

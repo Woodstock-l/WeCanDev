@@ -4,7 +4,7 @@
         <li class="media col-md-2 col-sm-12 container">
             <div class="row">
                 {% if entity.image is not empty %}
-                    <img style="max-width:200px;max-height:200px;" class="mr-3 col-md-12" src="{{ asset('/uploads/' ~ entity.image.path) }}" alt="{{ entity.title }}">
+                    <img style="max-width:180px;max-height:180px;" class="mr-3 col-md-12" src="{{ asset('/uploads/' ~ entity.image.path) }}" alt="{{ entity.title }}">
                 {% else %}
                     <img class="w-100" src="{{ asset('./img/tuto.jpg') }}" alt="Image par défaut">
                 {% endif %}

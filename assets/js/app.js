@@ -109,12 +109,12 @@ function delay(callback, ms) {
             e.preventDefault(); // Annule le chargement de la page
 
             $.getJSON($(this).attr('href'), function(data) {
-
-                if (data.success) {
+                if (data.success == true) {
                     if(data.isFollow) { // Si on suit le tuto
-                        $(element).addClass('text-warning').removeClass('text-primary');
+                        $( element ).children('i').addClass( 'text-primary' ).removeClass( 'text-dark' );
+                        
                     } else {
-                        $( element ).addClass( 'text-primary' ).removeClass( 'text-warning' );
+                        $(element).children('i').addClass('text-dark').removeClass('text-primary');
                     }
                 }
             });

@@ -24,7 +24,7 @@ class Rating
     private $tutorials;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="ratingTutorials")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;

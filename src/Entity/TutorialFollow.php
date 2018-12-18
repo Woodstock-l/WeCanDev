@@ -22,7 +22,7 @@ class TutorialFollow
     private $date;
 
     /**
-    * @ORM\ManyToOne(targetEntity="App\Entity\Tutorial", inversedBy="followers")
+    * @ORM\ManyToOne(targetEntity="App\Entity\Tutorial")
     * @ORM\JoinColumn(nullable=false)
     */
     private $tutorial;

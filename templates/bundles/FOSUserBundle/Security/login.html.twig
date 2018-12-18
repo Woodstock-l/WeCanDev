@@ -5,7 +5,7 @@
 {% if error %}
     <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
-
+<br>
 <form action="{{ path("fos_user_security_check") }}" method="post">
 {% embed 'decorator/_card.html.twig' %}
 {% trans_default_domain 'FOSUserBundle' %}
@@ -35,10 +35,12 @@
     {% endblock %}
 
     {% block footer %}
-        <input type="submit" class="btn btn-primary" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+        <input type="submit" id="btnLogin" class="btn btn-primary" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
     {% endblock %}
 
 {% endembed %}
 </form>
+
+<br>
 
 {% endblock page_content %}

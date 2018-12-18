@@ -11,8 +11,14 @@ body {
 }
 
 // Boutons
-#btnCreate, #btnPdf, #btnProfile, #btnPassword {
+#btnCreate, #btnPdf, #btnProfile, #btnPassword, #btnComment, #btnChangePassword, #btnEditProfile {
     margin-bottom: 30px;
+    color: #fff;
+    background-color: #F3969A;
+    border-color: #F3969A;
+}
+
+#btnRegister, #btnLogin {
     color: #fff;
     background-color: #F3969A;
     border-color: #F3969A;

@@ -48,13 +48,22 @@ class SearchController extends AbstractController
                 
                 if (!is_null($tutorials)) {
                   foreach ($tutorials as $tutorial) {
-                    
+
+                    $categories = [];
+
+                    foreach($tutorial->getCategories() as $cat) {
+                        $categories[] = array(
+                            'id' => $cat->getId(),
+                            'name' => $cat->getName(),
+                        );
+                    }
+
                     $result = [
                         'title' => $tutorial->getTitle(),
-                        'category' => $tutorial->getCategories(),
+                        'category' => $categories,
                         'url' => $this->generateUrl('tutorial_show', ['id' => $tutorial->getId()])
-                            
                     ];
+                    
                     array_push($results, $result); 
                 }
                 

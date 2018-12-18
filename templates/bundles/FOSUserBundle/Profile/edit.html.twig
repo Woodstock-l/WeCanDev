@@ -6,7 +6,7 @@
 
 {% block page_content %}
 <header class="main-header">
-    {% embed 'decorator/_navbar.html.twig' with {'class': 'fixed-top navbar-dark bg-primary', 'brandUrl': path('index') } %}
+    {% embed 'decorator/_navbar.html.twig' with {'class': 'fixed-top navbar-dark bg-darkblue', 'brandUrl': path('index') } %}
         {% block brand %}
             WeCanDev
         {% endblock %}
@@ -17,12 +17,14 @@
     {% endembed %}
 </header>
 
+<br>
+
 {% trans_default_domain 'FOSUserBundle' %}
 
 {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
     {{ form_widget(form) }}
     <div>
-        <input class="btn btn-primary" type="submit" value="{{ 'profile.edit.submit'|trans }}">
+        <input id="btnEditProfile" class="btn btn-primary" type="submit" value="{{ 'profile.edit.submit'|trans }}">
     </div>
 {{ form_end(form) }}
 {% endblock %}

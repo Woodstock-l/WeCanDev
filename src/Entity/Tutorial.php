@@ -19,16 +19,93 @@ class Tutorial
      */
     private $id;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
     /**
      * @ORM\Column(type="string", length=200)
      * @Assert\NotBlank()
      */
     private $title;
+
+     /**
+     * @ORM\Column(type="text")
+     * @Assert\NotBlank()
+     * @var string
+     */
+    private $content;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Image", cascade={"all"}, orphanRemoval=true)
+     * @var ?\App\Entity\Image
+     */
+    private $image;
+
+    /**
+     * @var ?\App\Entity\User
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="tutorials")
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="tutorials")
+     * @Assert\NotBlank()
+     * @var ?\Doctrine\Common\Collections\ArrayCollection
+     */
+    private $categories;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     * @var bool
+     */
+    private $published;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var ?\DateTime
+     */
+    private $dateCreate;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var ?\DateTime
+     */
+    private $dateUpdate;
+
+    /*
+     * @ORM\OneToMany(targetEntity="App\Entity\TutorialFollow", mappedBy="tutorial", orphanRemoval=true)
+     */
+    private $followers;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="tutorial", orphanRemoval=true)
+     * @var ?\Doctrine\Common\Collections\ArrayCollection
+     */
+    private $comments;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Rating", mappedBy="tutorials", orphanRemoval=true)
+     */
+    private $userRate;
+
+    /**
+     * @ORM\Column(type="decimal", scale=1, nullable=true)
+     */
+    private $averageRating;
+
+    
+    public function __construct()
+    {
+        $this->dateCreate = new \DateTime;
+        $this->dateUpdate = null;
+        $this->followers = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+        $this->userRate = new ArrayCollection();
+    }
+
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
     /**
      * Get the value of title
@@ -49,13 +126,6 @@ class Tutorial
 
         return $this;
     }
-
-    /**
-     * @ORM\Column(type="text")
-     * @Assert\NotBlank()
-     * @var string
-     */
-    private $content;
 
     /**
      * Get the value of content
@@ -82,12 +152,6 @@ class Tutorial
     }
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Image", cascade={"all"}, orphanRemoval=true)
-     * @var ?\App\Entity\Image
-     */
-    private $image;
-
-    /**
      * Get the value of image
      *
      * @return  ?\App\Entity\Image
@@ -112,13 +176,6 @@ class Tutorial
     }
 
     /**
-     * @var ?\App\Entity\User
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="tutorials")
-     * @ORM\JoinColumn(onDelete="SET NULL")
-     */
-    private $user;
-
-        /**
      * Get the value of user
      *
      * @return  ?\App\Entity\User
@@ -141,13 +198,6 @@ class Tutorial
 
         return $this;
     }
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="tutorials")
-     * @Assert\NotBlank()
-     * @var ?\Doctrine\Common\Collections\ArrayCollection
-     */
-    private $categories;
 
     /**
      * Get the value of categories
@@ -174,12 +224,6 @@ class Tutorial
     }
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
-     * @var bool
-     */
-    private $published;
-
-    /**
      * Get the value of published
      *
      * @return  bool
@@ -203,14 +247,7 @@ class Tutorial
         return $this;
     }
 
-    
     /**
-     * @ORM\Column(type="datetime", nullable=true)
-     * @var ?\DateTime
-     */
-    private $dateCreate;
-
-        /**
      * Get the value of dateCreate
      *
      * @return  ?\DateTime
@@ -235,12 +272,6 @@ class Tutorial
     }
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
-     * @var ?\DateTime
-     */
-    private $dateUpdate;
-
-       /**
      * Get the value of dateUpdate
      *
      * @return  ?\DateTime
@@ -264,25 +295,22 @@ class Tutorial
         return $this;
     }
 
-    
-    /*
-    * @ORM\OneToMany(targetEntity="App\Entity\TutorialFollow", mappedBy="tutorial", orphanRemoval=true)
-    */
-    private $followers;
-    
     /**
      * @return Collection|TutorialFollow[]
      */
-    public function getFollowers(): Collection
+    public function getFollowers(): ?Collection
     {
         return $this->followers;
     }
     
     public function addFollower(TutorialFollow $follower): self
     {
-        if (!$this->followers->contains($follower)) {
-            $this->followers[] = $follower;
-            $follower->setTutorial($this);
+        if ($this->followers->contains($follower)) {
+            $this->followers->removeElement($follower);
+            // set the owning side to null (unless already changed)
+            if ($follower->getTutorial() === $this) {
+                $follower->setTutorial(null);
+            }
         }
         
         return $this;
@@ -300,12 +328,6 @@ class Tutorial
         
         return $this;
     }
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="tutorial", orphanRemoval=true)
-     * @var ?\Doctrine\Common\Collections\ArrayCollection
-     */
-    private $comments;
 
     /**
      * @return Collection|Comment[]
@@ -337,24 +359,6 @@ class Tutorial
  
         return $this;
     }
-
-    public function __construct()
-    {
-        $this->dateCreate = new \DateTime;
-        $this->dateUpdate = null;
-        $this->followers = new ArrayCollection();
-        $this->comments = new ArrayCollection();
-        $this->userRate = new ArrayCollection();
-    }
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Rating", mappedBy="tutorials", orphanRemoval=true)
-     */
-    private $userRate;
-
-    /**
-     * @ORM\Column(type="decimal", scale=1, nullable=true)
-     */
-    private $averageRating;
 
     /**
      * Get the value of averageRating
@@ -415,3 +419,4 @@ class Tutorial
         }
     }
 }
+

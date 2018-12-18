@@ -79,10 +79,8 @@ class TutorialController extends Controller
 
         return $this->render('tutorial/show.html.twig', array(
             'entity' => $entity,
-
             'isFollow' => $isFollow,
             'commentForm' => $form->createView(),
-
         ));
     }
 
@@ -106,10 +104,21 @@ class TutorialController extends Controller
                 $af = new TutorialFollow();
                 $af->setTutorial($entity)->setUser($user);
                 $em->persist($af);
-
+               
                 $isFollow = true;
             }
+
+            $em->flush();
         }
+
+        if($request->isXmlHttpRequest()){
+            return $this->json(array(
+                'success' => true,
+                'isFollow' => $isFollow,
+            ));
+        }
+
+        return $this->redirectToRoute('tutorial_show', array('id' => $entity->getId()));
     }
               
     /**
