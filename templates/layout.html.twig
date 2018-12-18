@@ -46,10 +46,11 @@
                 </ul>
 
                 {# Barre de recherche #}
-                <form class="form-inline" id="recherche" method="post">
-                    <input name="saisie" type="text" placeholder="Recherche..." required />
-                    <input class="loupe" type="submit" value="" />
-                </form>
+                
+
+					{{ render(controller('App\\Controller\\SearchController::searchBar')) }}
+
+
                 
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %} 
                 {# pour condition avec un rôle spécifique {% if is_granted('ROLE_NOMDUROLE') %} #}
@@ -70,7 +71,7 @@
 </header>
 <div class="{% block page_class %}container{% endblock %}">
     {% block page_content %}
-    {# Affichage des mesages Flash#}
+    {# Affichage des messages Flash#}
         <div class="flash-message">
             {% for type, messages in app.flashes %}
                 {% for message in messages %}
@@ -157,7 +158,7 @@
 									<p>0624576454</p>
 								</div>
 								<div class="single-contact-add-info">
-									<h3>email</h3>
+									<h3>Email</h3>
 									<p>wecandev@gmail.com</p>
 								</div>
 							</div>

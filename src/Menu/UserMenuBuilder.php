@@ -26,15 +26,14 @@ class UserMenuBuilder
         }
         $parent->setExtra('translation_domain', false); // Ne pas traduire le pseudo
 
-        $parent->addChild('Mon profil', ['route' => 'user_profile']);
-        $parent->addChild('Se déconnecter', ['route' => 'fos_user_security_logout']);
+        $parent->addChild('profile', ['route' => 'fos_user_profile_show']);
+
+        $parent->addChild('logout', ['route' => 'fos_user_security_logout']);
 
         if ($user->hasRole('ROLE_USER')) {
             $menu->addChild('user', ['url' => '#']);
         }
-
-        
-
+      
         return $menu;
     }
 }

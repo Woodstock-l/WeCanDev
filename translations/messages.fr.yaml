@@ -6,15 +6,18 @@ category:
     title: Ajouter une catégorie
   tutorial_count: Nombre de tutoriel
 
-
 date:
   create: Date d'ajout
   update: Date de modification
 
 user:
+  name: Nom
+  firstname: Prénom
+  avatar: Avatar
   type:
     client: Client
 
+profile: .icon-user Mon profil
 logout: .icon-door-open Se déconnecter
 
 registration:

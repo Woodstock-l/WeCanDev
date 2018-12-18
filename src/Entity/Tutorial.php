@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TutorialRepository")
@@ -25,6 +26,7 @@ class Tutorial
 
     /**
      * @ORM\Column(type="string", length=200)
+     * @Assert\NotBlank()
      */
     private $title;
 
@@ -50,6 +52,7 @@ class Tutorial
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      * @var string
      */
     private $content;
@@ -141,6 +144,7 @@ class Tutorial
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="tutorials")
+     * @Assert\NotBlank()
      * @var ?\Doctrine\Common\Collections\ArrayCollection
      */
     private $categories;
@@ -296,13 +300,50 @@ class Tutorial
         
         return $this;
     }
-    
-    
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="tutorial", orphanRemoval=true)
+     * @var ?\Doctrine\Common\Collections\ArrayCollection
+     */
+    private $comments;
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setTutorial($this);
+        }
+ 
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+            // set the owning side to null (unless already changed)
+            if ($comment->getTutorial() === $this) {
+                $comment->setTutorial(null);
+            }
+        }
+ 
+        return $this;
+    }
+
     public function __construct()
     {
         $this->dateCreate = new \DateTime;
         $this->dateUpdate = null;
         $this->followers = new ArrayCollection();
+        $this->comments = new ArrayCollection();
         $this->userRate = new ArrayCollection();
     }
     /**
@@ -372,6 +413,5 @@ class Tutorial
         } else {
             $this->userRate[$this->userRate->indexOf($userRate)]->setRating($userRate->getRating());
         }
-        
     }
 }

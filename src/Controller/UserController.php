@@ -7,6 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
 use App\Entity\User;
+use App\Entity\Tutorial;
 
 /**
  * @Route("/user", name="user_")
@@ -35,7 +36,7 @@ class UserController extends AbstractController
             $entity = $em->getRepository(User::class)->findOneByUsername($username);
         }
         
-        return $this->render('/user/profile.html.twig', array(
+        return $this->render('/profile.html.twig', array(
             'entity' => $entity,
         ));
     }
