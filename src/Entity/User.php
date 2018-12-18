@@ -46,7 +46,7 @@ class User extends BaseUser
      * @ORM\OneToOne(targetEntity="App\Entity\Avatar", cascade={"all"}, orphanRemoval=true)
      * @var ?\App\Entity\Avatar
      */
-    private $avatar = "img/default_user.png";
+    private $avatar;
 
 
     public function __construct()
