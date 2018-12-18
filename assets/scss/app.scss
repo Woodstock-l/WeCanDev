@@ -1,3 +1,50 @@
 
 @import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
+@import "~summernote/dist/summernote-bs4.css";
+@import '~codemirror/lib/codemirror.css';
+@import '~codemirror/theme/monokai.css';
+@import "~highlight.js/styles/solarized-light.css";
+
+pre.code {
+    background-color: rgb(43, 41, 41);
+    border-radius: 3px;
+    font-family: courier, monospace;
+    color:rgb(233, 232, 232);
+    padding: 10px;
+    display: block;
+}
+
+div.note-toolbar button{
+    background-color: rgb(43, 41, 41);
+    border-radius: 2px;
+    box-shadow: 1px 1px 1px rgb(218, 213, 213);
+}
+
+div.note-toolbar button:hover{
+    background-color: rgb(65, 63, 63);
+    border-radius: 2px;
+    box-shadow: 2px 2px 3px rgb(185, 181, 181);
+}
+
+.blockquote{
+    border-left: solid 10px rgb(230, 169, 100);
+    background-color: rgb(240, 229, 217);
+    color:rgb(43, 41, 41);
+    padding: 10px;
+}
+
+.blocErreur{
+    border-radius: 3px;
+    background-color: rgb(250, 116, 111);
+    color:rgb(245, 239, 239);
+    padding: 10px;
+}
+
+.blocLien{
+    border-radius: 3px;
+    background-color: rgb(111, 176, 250);
+    color:rgb(245, 239, 239);
+    padding: 10px;
+}

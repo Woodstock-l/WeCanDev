@@ -1,0 +1,89 @@
+{% extends 'admin/admin_layout.html.twig' %}
+
+{% block title %}{{ 'tutorial.index.title'|trans }} - {{ parent() }}{% endblock %}
+
+{% block page_content %}
+
+{% embed 'decorator/_card.html.twig' with {'header_class': 'bg-primary'} %}
+    {% block header %}
+        {{ 'tutorial.index.title'|trans|parse_icons }}
+    {% endblock %}
+
+
+    {% block body %}
+        <a class="float-right btn btn-info" href="{{ path('admin_tutorial_new') }}"><i class="fa fa-plus"></i> Ajouter un tutorial</a>
+    {% endblock %}
+
+
+    {% block table %}
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-dark">
+                    <th>{{ 'tutorial.titre'|trans }}</th>
+                    <th>{{ 'tutorial.author'|trans }}</th>
+                    <th>{{ 'tutorial.category'|trans }}</th>
+                    <th>{{ 'date.create'|trans }}</th>
+                    <th>{{ 'date.update'|trans }}</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    {% for entity in entities %}
+                        {% if not entity.published %}
+                        <tr class="table-danger">
+                        {% else %}
+                        <tr>
+                        {% endif %}
+                            <td>{{ entity.title }}</td>
+                            <td>{{ entity.user }}</td>
+                            <td>
+                                {% for category in entity.categories %}
+                                <span class="badge badge-info mr-1">{{ category }}</span>
+                                {% endfor %}
+                            </td>
+                            <td>
+                                {% if entity.dateCreate.timestamp != 0 %}
+                                    {{ entity.dateCreate|date('d/m/Y H:i') }}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if entity.dateUpdate is not empty and entity.dateUpdate.timestamp > 0 %}
+                                    {{ entity.dateUpdate|date('d/m/Y H:i') }}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
+                            <td>
+                            <div class="btn-group btn-group-sm">
+                                <a class="btn btn-primary" href="{{ path('admin_tutorial_edit', {'id': entity.id }) }}"><i class="fa fa-pencil-alt"></i></a>
+                                <a class="btn btn-danger" href="{{ path('admin_tutorial_delete', {'id': entity.id }) }}"><i class="fa fa-trash-alt"></i></a>
+                            </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endblock %}
+
+{# Footer #}
+{% block footer %}
+<div class="float-left">
+    {{ 'tutorial.index.count'|transchoice(entities|length, {'%count%': entities|length}) }}
+</div>
+
+<div class="float-right">
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            {% for p in 1..nbPages %}
+        <li class="page-item {% if p == page %}active{% endif %}"><a class="page-link" href="{{ path('admin_tutorial_index', {'page': p}) }}">{{ p }}</a></li>
+            {% endfor %}
+        </ul>
+    </nav>
+</div>
+{% endblock %}
+
+{% endembed %}
+
+{% endblock %}

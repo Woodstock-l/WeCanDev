@@ -7,9 +7,9 @@
 {% block body %}
 {# HEADER #}
 <header class="main-header">
-    {% embed 'decorator/_navbar.html.twig' with {'class': 'fixed-top navbar-dark bg-primary', 'brandUrl': path('index') } %}
+    {% embed 'decorator/_navbar.html.twig' with {'class': 'fixed-top navbar-dark bg-darkblue', 'brandUrl': path('index') } %}
         {% block brand %}
-            Blog WebFroce 3
+            WeCanDev
         {% endblock %}
 
         {% block menu %}
@@ -22,7 +22,7 @@
 <aside class="main-sidebar">
     <section class="side-menu">
     {# MENU #}
-        {{ knp_menu_render('admin', {'style': 'vertical-pills'}) }}
+       {{ knp_menu_render('admin', {'style': 'vertical-pills'}) }} 
     </section>
 </aside>
 

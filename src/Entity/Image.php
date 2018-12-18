@@ -19,8 +19,9 @@ class Image
      */
     private $id;
 
+    
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $path;
 
@@ -32,7 +33,7 @@ class Image
     /**
      * @var UploadedFile
      * @Assert\Image(
-     *  maxSize = "2M"
+     *  maxSize = "1M"
      * )
      */
     private $file;
@@ -50,6 +51,9 @@ class Image
 
     public function getPath(): ?string
     {
+        if (empty($this->path)) {
+            return '../img/tuto.jpg';
+        }
         return $this->path;
     }
 
@@ -73,7 +77,7 @@ class Image
     }
 
     /**
-     * Get maxSize = "2M"
+     * Get maxSize = "1M"
      *
      * @return  UploadedFile
      */ 
@@ -83,9 +87,9 @@ class Image
     }
 
     /**
-     * Set maxSize = "2M"
+     * Set maxSize = "1M"
      *
-     * @param  UploadedFile  $file  maxSize = "2M"
+     * @param  UploadedFile  $file  maxSize = "1M"
      *
      * @return  self
      */ 
@@ -104,7 +108,7 @@ class Image
      */
     public function generatePath()
     {
-        if ($this->file instanceof UploadedFile) {
+        if ($this->file instanceof UploadedFile && !empty($this->file->guessExtension())) {
             // Génére le chemin du fichier à uploader
             $this->path = uniqid('img_') . '.' . $this->file->guessExtension();
         }

@@ -21,36 +21,155 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @var null|string
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", length=180, nullable=true)
      */
-    private $type;
+    private $name;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $firstname;
+
+    /**
+     * @var ?\Doctrine\Common\Collections\ArrayCollection
+     * @ORM\OneToMany(targetEntity="App\Entity\Tutorial", mappedBy="user")
+     * @ORM\OrderBy({"id" = "DESC"})
+     */
+    private $tutorials;
+
+    /**
+    * @ORM\OneToMany(targetEntity="App\Entity\TutorialFollow", mappedBy="user", orphanRemoval=true)
+    */
+    private $followedTutorials;
+
+     /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Avatar", cascade={"all"}, orphanRemoval=true)
+     * @var ?\App\Entity\Avatar
+     */
+    private $avatar = "img/default_user.png";
+
 
     public function __construct()
     {
         parent::__construct();
+        $this->followedTutorials = new ArrayCollection();
     }
 
     /**
-     * Get the value of type
-     *
-     * @return  null|string
+     * Get the value of name
      */ 
-    public function getType()
+    public function getName()
     {
-        return $this->type;
+        return $this->name;
     }
 
     /**
-     * Set the value of type
-     *
-     * @param  null|string  $type
+     * Set the value of name
      *
      * @return  self
      */ 
-    public function setType($type)
+    public function setName($name)
     {
-        $this->type = $type;
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of firstname
+     */ 
+    public function getFirstname()
+    {
+        return $this->firstname;
+    }
+
+    /**
+     * Set the value of firstname
+     *
+     * @return  self
+     */ 
+    public function setFirstname($firstname)
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of tutorials
+     *
+     * @return  ?\Doctrine\Common\Collections\ArrayCollection
+     */ 
+    public function getTutorials()
+    {
+        return $this->tutorials;
+    }
+
+    /**
+     * Set the value of tutorials
+     *
+     * @param  ?\Doctrine\Common\Collections\ArrayCollection  $tutorials
+     *
+     * @return  self
+     */ 
+    public function setTutorials(?\Doctrine\Common\Collections\ArrayCollection $tutorials)
+    {
+        $this->tutorials = $tutorials;
+
+        return $this;
+    }
+
+     /**
+     * @return Collection|TutorialFollow[]
+     */
+     public function getFollowedTutorials(): Collection
+     {
+         return $this->followedTutorials;
+     }
+ 
+     public function addFollowedTutorial(TutorialFollow $followedTutorial): self
+     {
+         if (!$this->followedTutorials->contains($followedTutorial)) {
+             $this->followedTutorials[] = $followedTutorial;
+             $followedTutorial->setUser($this);
+         }
+ 
+         return $this;
+     }
+ 
+     public function removeFollowedTutorial(TutorialFollow $followedTutorial): self
+     {
+         if ($this->followedTutorials->contains($followedTutorial)) {
+             $this->followedTutorials->removeElement($followedTutorial);
+             // met le User à null (à moins que ça soit déjà changé)
+             if ($followedTutorial->getUser() === $this) {
+                 $followedTutorial->setUser(null);
+             }
+         }
+ 
+         return $this;
+     }
+
+     /**
+     * Get the value of avatar
+     *
+     * @return  ?\App\Entity\Avatar
+     */ 
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * Set the value of avatar
+     *
+     * @param  ?\App\Entity\Avatar  $avatar
+     *
+     * @return  self
+     */ 
+    public function setAvatar(?\App\Entity\Avatar $avatar)
+    {
+        $this->avatar = $avatar;
 
         return $this;
     }

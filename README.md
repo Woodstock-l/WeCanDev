@@ -688,4 +688,3 @@ Soit le nom dans la méthode "render" du controller n'est pas bon, soit le fichi
 -Controller "App\Controller\Admin\ArticleController::edit()" requires that you provide a value for the "$entity" argument. Either the argument is nullable and no null value has been provided, no default value has been provided or because there is a non optional argument after this one.
 
 Oublis du typage d'un argument de méthode dans le controller (Article $entity)
-# WeCanDev

@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 use App\Entity\User;
+use App\Entity\Tutorial;
 
 /**
  * @Route("/user", name="user_")
@@ -23,14 +25,33 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/profile/{username}", name="profile")
+     * @Route("/profile/{username}", name="profile", defaults={"username" = null})
      */
-    public function profile($username)
+    public function profile($username = null)
     {
-        $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository(User::class)->findOneByUsername($username);
-        return $this->render('/user/profile.html.twig', array(
+        if (is_null($username)) {
+            $entity = $this->getUser();
+        } else {
+            $em = $this->getDoctrine()->getManager();
+            $entity = $em->getRepository(User::class)->findOneByUsername($username);
+        }
+        
+        return $this->render('/profile.html.twig', array(
             'entity' => $entity,
         ));
+    }
+    /**
+     * @Route("/follow/{id}", requirements={"id" = "\d+"}, name="follow")
+     */
+    public function connect(Request $request)
+    {
+        // Test si la requêteenvoyé est en AJAX
+        if ($request->isXmlHttpRequest())
+        {
+            //return new JsonResponse(array());
+            return $this->json(array(
+                'success' => true,
+            ));
+        }
     }
 }
