@@ -37,9 +37,8 @@ class TutorialType extends AbstractType {
                 ]
             ))
             ->add('published', null, array(
-                'label' => 'tutorial.published'
-            ))
-        ;
+            'label' => 'tutorial.published'
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver)

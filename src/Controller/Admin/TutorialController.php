@@ -31,6 +31,7 @@ class TutorialController extends Controller
             'entities' => $entities,
             'page' => $page,
             'nbPages' => $nbPages,
+
         ));
     }
     /**
@@ -61,6 +62,7 @@ class TutorialController extends Controller
 
         return $this->render('admin/tutorial/new.html.twig', array(
             'form' => $form->createView(),
+            'user' => $user,
         ));
     }
 
