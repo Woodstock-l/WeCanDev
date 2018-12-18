@@ -79,10 +79,33 @@ ul.notes-echelle li.note-checked {
 
 }
 
-div.form-group{
-    margin: none;
+div#resultSearch{
+    position: absolute;
+    left: 48%;
+    top: 40px;
+    background-color: rgb(255, 255, 255);
+    width: 160px;
+    text-align: center;
+    box-shadow: 1px 1px 3px rgb(71, 71, 71);
+    border-radius: 0.4rem;
+    
 }
-     
+
+div#resultSearch a li{
+    list-style: none;
+    color: #888;
+}
+
+div#resultSearch a li:hover{
+    list-style: none;
+    background-color: #ea5455;
+    color: #ececec;
+}
+
+div#resultSearch a{
+    text-decoration: none;
+}
+
 #recherche input {
     outline:0;
     border:0;
@@ -99,6 +122,24 @@ div.form-group{
     padding:0 9px;
     color:#666;
 }
+
+/*----------------------------------------------------------
+                    Bloc Recherche
+----------------------------------------------------------*/
+
+div.blocResult{
+    padding: 20px;
+}
+
+div.blocResult ul{
+    padding: 20px;
+}
+
+div.blocResult li{
+    padding: 20px;
+}
+
+
 
 /*-------------------------------------
             HEADER

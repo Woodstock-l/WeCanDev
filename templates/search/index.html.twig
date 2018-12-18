@@ -13,15 +13,15 @@
 </header>#}
 
 
-        <div class="#resultSearch">
-            <h2>Resultat recherche</h2>
+        <div class="blocResult">
+            <h2>Resultat recherche:</h2>
             <div class="article-list container">
                 <ul class="list-unstyled row justify-content-between">
                 {% for tutorial in tutorials %}
                     <li class="media">
-                        {% if tutorial.image is not empty %}
+                    {% if tutorial.image is not empty %}
                         <img style="max-width:220px;" class="mr-3" src="{{ asset('/uploads/' ~ tutorial.image.path) }}" alt="{{ tutorial.title }}">
-                        {% endif %}
+                    {% endif %}
                         <div class="media-body">
                         <div class="media-body col-md-12 text-center">
                             <a href="{{ path('tutorial_show', {'id': tutorial.id }) }}" id="titleTutorial" class="mt-0 mb-1">{{ tutorial.title|striptags }}</a>
