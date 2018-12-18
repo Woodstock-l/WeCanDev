@@ -30,4 +30,16 @@ class TutorialRepository extends ServiceEntityRepository
 
         return new Paginator($queryBuilder);
     }
+
+    public function findBySearch($value)
+    {
+        return $this->createQueryBuilder('i')
+            ->andWhere('i.title LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->orderBy('i.id', 'ASC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

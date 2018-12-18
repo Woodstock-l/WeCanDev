@@ -7,7 +7,10 @@
         "ext-iconv": "*",
         "friendsofsymfony/user-bundle": "^2.1",
         "knplabs/knp-menu-bundle": "^2.2",
+<<<<<<< HEAD
+=======
         "knplabs/knp-snappy": "^1.0",
+>>>>>>> refs/remotes/origin/register
         "knplabs/knp-snappy-bundle": "^1.5",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/asset": "4.1.*",
