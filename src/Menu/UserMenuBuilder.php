@@ -26,6 +26,7 @@ class UserMenuBuilder
         }
         $parent->setExtra('translation_domain', false); // Ne pas traduire le pseudo
 
+        $parent->addChild('profile', ['route' => 'fos_user_profile_show']);
 
         $parent->addChild('logout', ['route' => 'fos_user_security_logout']);
 
