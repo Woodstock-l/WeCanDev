@@ -33,7 +33,7 @@ class UserMenuBuilder
         if ($user->hasRole('ROLE_USER')) {
             $menu->addChild('user', ['url' => '#']);
         }
-
+      
         return $menu;
     }
 }

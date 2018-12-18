@@ -1,0 +1,37 @@
+
+{% extends 'layout.html.twig' %}
+{% block page_class %}{% endblock %}
+{% block page_content %}
+
+{#<header class="main-header">
+    {% embed 'decorator/_navbar.html.twig' with {'class': 'fixed-top navbar-dark bg-dark', 'brandUrl': path('index') } %}
+        {% block brand %}
+            WeCanDev
+        {% endblock %}
+    {% endembed %}
+    
+</header>#}
+
+
+        <div class="#resultSearch">
+            <h2>Resultat recherche</h2>
+
+            <ul class="list-unstyled">
+                {% for tutorial in tutorials %}
+                <li class="media">
+                    {% if tutorial.image is not empty %}
+                    <img style="max-width:220px;" class="mr-3" src="{{ asset('/uploads/' ~ tutorial.image.path) }}" alt="{{ tutorial.title }}">
+                    {% endif %}
+                    <div class="media-body">
+                        <h5 class="mt-0 mb-1">{{ tutorial.title }}</h5>
+                        {{ tutorial.content|striptags|slice(0, 50) }}
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

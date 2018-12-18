@@ -19,6 +19,8 @@ import php from 'highlight.js/lib/languages/php';
 import twig from 'highlight.js/lib/languages/twig';
 
 
+//WISYWIG
+
 $(function() {   
         
     $('.summernote').summernote({
@@ -55,6 +57,49 @@ $(function() {
         hljs.highlightBlock(block);
     });
 
+
+//---------------------------FIN PARAMETRE WYSIWYG ET HIGHLIGHT-------------------------------
+
+//---------------------------REQUETE AJAX SEARCHBAR-------------------------------------------
+
+$('#form_query').on('keyup',delay(function(){
+    var $form = $(this).closest('form');
+    $.ajax({
+        type: "POST",
+        data: $form.serialize(),
+        url: $form.attr('action'),
+        success: function(data){
+            var html = '';
+            data.forEach(element => {
+                html +='<a href="'+element.url+'"><li>'+element['title']+'</li></a>'
+            });
+            
+            $('#resultSearch').html(html)
+                    
+        }
+    })
+},500));
+
+
+//===================================
+//      DELAY
+//===================================
+function delay(callback, ms) {
+    var timer = 0;
+    return function() {
+      var context = this, args = arguments;
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        callback.apply(context, args);
+      }, ms || 0);
+    };
+  }
+
+//---------------------------FIN REQUETE AJAX SEARCHBAR-------------------------------------------
+
+
+
+
     var $followLink = $('.follow-link');
 
     // Pour chaque élément ".follow-link"
@@ -66,7 +111,7 @@ $(function() {
             $.getJSON($(this).attr('href'), function(data) {
 
                 if (data.success) {
-                    if(data.isFollow) { // Si on suis l'article
+                    if(data.isFollow) { // Si on suit le tuto
                         $(element).addClass('text-warning').removeClass('text-primary');
                     } else {
                         $( element ).addClass( 'text-primary' ).removeClass( 'text-warning' );
@@ -77,6 +122,7 @@ $(function() {
         });
     });
 
+    //NOTATION
 	// On ajoute la classe "js" à la liste pour mettre en place par la suite du code CSS uniquement dans le cas où le Javascript est activé
 	$("ul.notes-echelle").addClass("js");
 	// On passe chaque note à l'état grisé par défaut
@@ -127,5 +173,53 @@ $(function() {
     $("ul.notes-echelle input:checked").parent("li").trigger("mouseover");
     // On simule un click souris des boutons cochés
     $("ul.notes-echelle input:checked").trigger("click");
+
+    // NOTE TUTO
+    var $tutoNoteForm = $('#tuto-note');
+    $tutoNoteForm.find('[name="notesA"]').change(function() {
+        
+        $.get($tutoNoteForm.attr('action'), $tutoNoteForm.serialize(), function() {
+
+        });
+    });
 });
+
+
+// Tableau de memorisation des notes pour chaque liste
+var ArrListeEtoile = new Object();
+
+//-------------------------------------------------------
+// Selection d une note pour une liste
+//-------------------------------------------------------
+function ChoixSelection(idListe, indice, nbEtoile){
+	ArrListeEtoile[idListe] = indice;
+	var score = "score-" + idListe;
+	document.getElementById(score).innerHTML = " " + indice + "/" + nbEtoile;
+}
+
+//-------------------------------------------------------
+// Creation d une liste de notation unique
+//-------------------------------------------------------
+function CreateListeEtoile(idListe, nbEtoile){
+	ArrListeEtoile[idListe] = 0;
+
+	var renduListe = "";
+	renduListe += "<div class=\"listeEtoile\" onmouseout=\"GestionHover('" + idListe + "', -1, '" + nbEtoile + "')\">";
+	renduListe += "<ul>";
+	
+	for(i=1; i<=nbEtoile; i++){
+		renduListe += "<li>";
+		renduListe += "<a href=\"javascript:ChoixSelection('" + idListe + "', '" + i + "', '" + nbEtoile + "')\" onmouseover=\"GestionHover('" + idListe + "', '" + i + "', '" + nbEtoile + "')\">";
+		renduListe += "<img id=\"staroff-" + idListe + "-" + i + "\" src=\"staroff.gif\" border=\"0\" title=\"" + i + "\" style=\"border-width: 0px; display: block;\">";
+		renduListe += "<img id=\"staron-" + idListe + "-" + i + "\" src=\"staron.gif\" border=\"0\" title=\"" + i + "\" style=\"border-width: 0px; display: none;\">";
+		renduListe += "</a>";
+		renduListe += "</li>";
+	}
+	
+	renduListe += "	</ul>";
+	renduListe += "</div>";
+	renduListe += "<label id=\"score-" + idListe + "\"></label>";
+	
+	document.getElementById(idListe).outerHTML = renduListe;
+}
 
