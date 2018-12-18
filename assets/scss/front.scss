@@ -115,26 +115,40 @@ div.form-group{
     background-position: center;
     height:920px;
     margin-top: -20px;
+    z-index:1;
 }
 
 /*.header-text-area*/
+
+
 .header-text h1 {
-    color: #000;
+    color: white;
+    text-shadow:black 0.1em 0.1em 0.2em;
     font-size: 54px;
     font-weight: 700;
     text-transform: uppercase;
     line-height: 1.5;
-    text-shadow: #f6f6f6 1px 0 10px;
+    z-index:4;
 }
-.header-text h1 span, .header-text h2 span {color: #ea5455;}
+.header-text h1 span {
+    color: #ea5455;
+    text-shadow:white 0.1em 0.1em 0.2em;
+} 
+
+.header-text h2 span {
+    color: #ea5455;
+    font-size: 50px;
+    text-shadow: black 0.1em 0.1em 0.2em;
+}
+
 .header-text h2 {
-    color: #000;
-    font-size: 20px;
+    color: #fff;
+    text-shadow:black 0.1em 0.1em 0.2em;
+    font-size: 30px;
     font-weight: 500;
     text-transform: uppercase;
     margin: 160px 0 60px;
     letter-spacing: 1px;
-    text-shadow: #F7F5FB 1px 0 7px;
 }
 
 
@@ -247,8 +261,11 @@ animation-name: fadeInDown;
             FOOTER
 --------------------------------------*/
 .contact {
-    background: #f9fbfd;
+    background-color: lighten(#9692af, 30%);
     padding: 50px 0 100px;
+}
+.contact h2 {
+    color: lighten(#2d4059, 10%);
 }
 .single-contact-box {padding-top: 100px;}
 .contact-form  .form-group {
@@ -263,20 +280,22 @@ animation-name: fadeInDown;
     box-shadow: none;
     outline: 0!important;
     background: #fff;
-    color: #636a82;
+    color: lighten(#2d4059, 10%);
     resize: none;
+    font-weight: 400;
 }
 
 /* contact-adress */
 .contact-add-head h3 {
     font-size:  24px;
-    color:  #3c4258;
+    color: lighten(#2d4059, 15%);
+    font-weight: 500;
 }
 .contact-add-head p {
     font-size:  16px;
     text-transform: capitalize;
-    color:  #636a82;
-    font-weight:  300;
+    color: lighten(#2d4059, 15%);
+    font-weight:  400;
     margin-top:  6px;
 }
 /* contact-adress */
@@ -284,11 +303,11 @@ animation-name: fadeInDown;
 /*.contact-add-info */
 .contact-add-info { margin: 42px 0 52px;}
 .single-contact-add-info h3 {
-    color:  #636a82;
+    color:  lighten(#2d4059, 15%);
     font-weight:  500;
 }
 .single-contact-add-info p {
-    color:  #999fb3;
+    color:  lighten(#2d4059, 15%);
     font-size:  16px;
     margin-top:  18px;
 }
@@ -298,7 +317,7 @@ animation-name: fadeInDown;
 /*.contact-add-info */
 .hm-foot-icon ul li{float:left;}
 .hm-foot-icon ul li>a {
-    color: #636a82;
+    color: lighten(#2d4059, 15%);
     margin-right:18px;
     -webkit-transition: .3s; 
     -moz-transition:.3s; 
@@ -310,12 +329,23 @@ animation-name: fadeInDown;
     color: #ea5455;
 }/*hm-foot-icon*/
 
+
+.footer-copyright {
+    height: 50px;
+}
+
 .hm-footer-copyright p{
-    color: #888ea5;
+    color: lighten(#2d4059, 15%);
     text-transform: capitalize;
-    padding: 38px 0;
+    padding: 10px 10px;
+    height: 50px;
+    margin: 0;
 }
 .hm-footer-copyright p a {color: #888ea5;}
+
+
+
+
 /*===============================
     Scroll Top
 ===============================*/

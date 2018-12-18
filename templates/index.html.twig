@@ -10,7 +10,8 @@
 			<div class="header-text">
 				<h1 class="animated animatedFadeInUp fadeInUp">WeCanDev <span>,</span><br></h1> 
                 <h2 class="animated animatedFadeInDown fadeInDown">le site où on apprend le développement <br> en s'amusant<span>.</span></h2>
-			</div><!--/.header-text-->
+			<a href="{{ path('tutorial_index') }}" class="btn btn-lg btn-secondary">{{ 'tutorial.show_all'|trans }}</a>
+            </div><!--/.header-text-->
 		</div><!--/.col-->
 	</div><!-- /.row-->
 </section><!--/.home-header-img--> <!-- /.container-->
@@ -28,9 +29,7 @@
         </div><!-- end .row-->
     </div><!-- end .container -->
 
-    <div class="text-center">
-            <a href="{{ path('tutorial_index') }}" class="btn btn-secondary">{{ 'tutorial.show_all'|trans }}</a>
-    </div>
+    
     
     
 </section> <!-- end .last-tutorials  -->
