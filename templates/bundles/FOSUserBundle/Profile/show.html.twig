@@ -38,8 +38,8 @@
 <br>
 
 <div class="btn-group">
-    <a class="btn btn-primary" href="{{ path('fos_user_profile_edit') }}">Modifier le profil</a>
-    <a class="btn btn-secondary" href="{{ path('fos_user_change_password') }}">Changer le mot de passe</a>
+    <a id="btnProfile" class="btn btn-primary" href="{{ path('fos_user_profile_edit') }}">Modifier le profil</a>
+    <a id="btnPassword" class="btn btn-secondary" href="{{ path('fos_user_change_password') }}">Changer le mot de passe</a>
 </div>
 
 <hr>
@@ -55,5 +55,5 @@
 
 <h2>Envie de proposer un nouveau tutoriel ?</h2>
     <p>Si vous souhaitez proposer un nouveau tutoriel, n'hésitez pas à nous le soumettre en cliquant sur le bouton ci-dessous.</p>
-    <a class="btn btn-primary" href="{{ path('admin_tutorial_new') }}">Créer un nouveau tutorial</a>
+    <a id="btnCreate" class="btn btn-primary" href="{{ path('admin_tutorial_new') }}">Créer un nouveau tutorial</a>
 {% endblock %}
