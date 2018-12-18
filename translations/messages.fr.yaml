@@ -17,6 +17,7 @@ user:
   type:
     client: Client
 
+profile: .icon-user Mon profil
 logout: .icon-door-open Se déconnecter
 
 registration:
