@@ -139,11 +139,14 @@ class TutorialController extends Controller
             else {
                 $note = new Rating();
                 $note->setTutorials($entity)->setUser($user)->setRating($rating);
-
+                
                 $em->persist($note);
 
                 $isRating = true;
             }
+            $entity->addUserRate($note);
+            $entity->calculateAverage();
+            $em->persist($entity);
 
             $em->flush();
             // Test si l'utilisateur à déjà noté

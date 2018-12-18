@@ -9,6 +9,7 @@
     {% endif %}
     <div class="card-body">
       <h5 class="card-title"><a href="{{ path('tutorial_show', {'id': entity.id}) }}">{{ entity.title }}</a></h5>
+      <p class="card-text">{{ 'tutorial.star'|trans|parse_icons }}{{ entity.averageRating}} Note de l'article</p>
       <p class="card-text">{{ entity.content|raw }}</p>
 
       <p class="card-text"><small class="text-muted">{{ entity.dateUpdate|date('d/m/Y H:i') }}</small></p>
